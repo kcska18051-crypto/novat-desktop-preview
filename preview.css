@@ -4,3 +4,8 @@ html,body{min-width:1280px}html{scroll-behavior:smooth}a,button{transition:color
 /* Client palette, desktop preview */
 html, body, .aside-part { background-color: #F2E6D1; }
 .logo img, .aside-part--small .logo img { height: auto; object-fit: contain; }
+
+/* Gold performance separators and date underlines */
+.data-item { border-top-color: #E2B167; }
+.data-item:last-child { border-bottom-color: #E2B167; }
+.data .number-day { border-bottom-color: #E2B167; }
