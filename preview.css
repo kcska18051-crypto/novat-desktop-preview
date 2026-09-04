@@ -2,7 +2,9 @@
 html,body{min-width:1280px}html{scroll-behavior:smooth}a,button{transition:color .18s ease,background-color .18s ease,border-color .18s ease}
 
 /* Client palette, desktop preview */
-html, body, .aside-part { background-color: #F2E6D1; }
+:root { --preview-background: #F2E6D1; }
+:root[data-preview-background="white"] { --preview-background: #FFFFFF; }
+html, body, .aside-part { background-color: var(--preview-background); }
 .logo img, .aside-part--small .logo img { height: auto; object-fit: contain; }
 
 /* Gold performance separators and date underlines */
@@ -19,3 +21,14 @@ html, body, .aside-part { background-color: #F2E6D1; }
 
 /* Gold show-more button */
 .performances-list-more .performances-more-link { background-color: #E2B167; }
+
+/* Client background comparison control */
+#background-toggle {
+ position: fixed; right: 24px; bottom: 24px; z-index: 10000;
+ padding: 11px 18px; border: 1px solid #5D0323; border-radius: 6px;
+ background: #FFFFFF; color: #5D0323; font: 600 14px/1.4 Arial, sans-serif;
+ cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.12);
+}
+#background-toggle:hover { background: #5D0323; color: #FFFFFF; }
+#background-toggle:focus-visible { outline: 3px solid #E2B167; outline-offset: 3px; }
+@media print { #background-toggle { display: none; } }
