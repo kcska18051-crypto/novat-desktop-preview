@@ -40,8 +40,6 @@ html, body, .aside-part { background-color: var(--preview-background); }
  box-shadow:0 2px 10px rgba(42,42,42,.12); }
 #design-toggle:hover, #design-toggle[aria-pressed="true"] { background:#5D0323; color:#FFFFFF; }
 #design-toggle:focus-visible { outline:3px solid #E2B167; outline-offset:3px; }
-:root[data-preview-design="refined"] .data-item { border-top-width:1px; }
-:root[data-preview-design="refined"] .data-item:last-child { border-bottom-width:1px; }
 :root[data-preview-design="refined"] .data .number-day { color:#5D0323; border-bottom-width:1px; }
 :root[data-preview-design="refined"] .day-week,
 :root[data-preview-design="refined"] .number-day__month,
