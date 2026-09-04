@@ -32,3 +32,33 @@ html, body, .aside-part { background-color: var(--preview-background); }
 #background-toggle:hover { background: #5D0323; color: #FFFFFF; }
 #background-toggle:focus-visible { outline: 3px solid #E2B167; outline-offset: 3px; }
 @media print { #background-toggle { display: none; } }
+
+/* Optional restrained palette; existing version stays available */
+#design-toggle { position:fixed; right:24px; bottom:78px; z-index:10000;
+ padding:11px 18px; border:1px solid #5D0323; border-radius:6px;
+ background:#FFFFFF; color:#5D0323; font:600 14px/1.4 Arial,sans-serif; cursor:pointer;
+ box-shadow:0 2px 10px rgba(42,42,42,.12); }
+#design-toggle:hover, #design-toggle[aria-pressed="true"] { background:#5D0323; color:#FFFFFF; }
+#design-toggle:focus-visible { outline:3px solid #E2B167; outline-offset:3px; }
+:root[data-preview-design="refined"] .data-item { border-top-width:1px; }
+:root[data-preview-design="refined"] .data-item:last-child { border-bottom-width:1px; }
+:root[data-preview-design="refined"] .data .number-day { color:#5D0323; border-bottom-width:1px; }
+:root[data-preview-design="refined"] .day-week,
+:root[data-preview-design="refined"] .number-day__month,
+:root[data-preview-design="refined"] .info-item,
+:root[data-preview-design="refined"] .actors,
+:root[data-preview-design="refined"] .actors--top,
+:root[data-preview-design="refined"] .actors__item,
+:root[data-preview-design="refined"] .actors__link,
+:root[data-preview-design="refined"] .poster-item__description { color:#2A2A2A; }
+:root[data-preview-design="refined"] .age-limit { background-color:#F2E6D1 !important; color:#5D0323; }
+:root[data-preview-design="refined"] .premiere { background:#F2E6D1; color:#5D0323; border-left:3px solid #E2B167; padding:5px 9px; }
+:root[data-preview-design="refined"] .performances-more-link { background:#5D0323; color:#FFFFFF; }
+:root[data-preview-design="refined"] .performances-more-link:hover { background:#2A2A2A; }
+:root[data-preview-design="refined"] .aside-part:after { background:#F2E6D1; }
+:root[data-preview-design="refined"] .afisha-item-hover:hover { background-color:#F2E6D1; }
+:root[data-preview-design="refined"] .afisha-item-hover:hover .poster-item__title,
+:root[data-preview-design="refined"] .afisha-item-hover:hover .nolink,
+:root[data-preview-design="refined"] .afisha-item-hover:hover .poster-item__top { color:#2A2A2A; }
+:root[data-preview-design="refined"] .afisha-item-hover:hover .actors__link span { border-bottom-color:#E2B167; }
+@media print { #design-toggle { display:none; } }
