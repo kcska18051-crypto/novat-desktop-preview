@@ -16,3 +16,6 @@ html, body, .aside-part { background-color: #F2E6D1; }
 
 /* Gold age category badges */
 .age-limit { background-color: #E2B167 !important; }
+
+/* Gold show-more button */
+.performances-list-more .performances-more-link { background-color: #E2B167; }
