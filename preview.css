@@ -12,7 +12,7 @@ html, body, .aside-part { background-color: #F2E6D1; }
 
 /* Gold filter checkbox outlines and checkmarks */
 .filter-block .check__label::after { border-color: #E2B167; }
-.filter-block .check__label::before { background-image: url("assets/check-gold.svg"); }
+.filter-block .check__label::before { background-image: url("assets/check-gold.svg?v=brand-8"); }
 
 /* Gold age category badges */
 .age-limit { background-color: #E2B167 !important; }
