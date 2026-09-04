@@ -9,3 +9,7 @@ html, body, .aside-part { background-color: #F2E6D1; }
 .data-item { border-top-color: #E2B167; }
 .data-item:last-child { border-bottom-color: #E2B167; }
 .data .number-day { border-bottom-color: #E2B167; }
+
+/* Gold filter checkbox outlines and checkmarks */
+.filter-block .check__label::after { border-color: #E2B167; }
+.filter-block .check__label::before { background-image: url("assets/check-gold.svg"); }
