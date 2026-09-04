@@ -1,0 +1,9 @@
+{
+  "downloaded": 167,
+  "failures": [
+    {
+      "url": "https://novat.ru/local/templates/novat/css/..images/icons/arrow_2.png",
+      "error": "HTTP Error 404: Not Found"
+    }
+  ]
+}

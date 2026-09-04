@@ -1,0 +1,200 @@
+.ie8{
+	display: block !important;
+}
+
+.main-banner{
+	min-height: 700px;
+}
+
+.main-banner__info{
+	bottom: auto;
+	top: 60%;
+	filter: alpha(50);
+}
+
+.fixedBlockFix .aside-container{
+	right: 0;
+}
+
+.main-banner img{
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+}
+
+.video-wrap{
+	height: 100%;
+	background: #ccc;
+}
+
+.video-wrap img{
+	width: 100%;
+}
+
+.aside-slide .rotate90{
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.socials__item{
+	background-image: url("../assets/14ca37294ff71943.png");
+}
+
+.socials__item--fb{
+	background-image: url("../assets/11219805edb2ca60.png");
+}	
+
+.socials__item--tw{
+	background-image: url("../assets/8056cdf1ff4d569f.png");
+}
+
+.socials__item--in{
+	background-image: url("../assets/6f43e876aa2116eb.png");
+}
+
+.socials__item--yt{
+	background-image: url("../assets/7c49eeea7fa7d845.png");
+}
+
+.socials--white .socials__item{
+	background-image: url("../assets/d1f50d0df3c08e4a.png");
+}
+
+.socials--white .socials__item--fb{
+	background-image: url("../assets/b8e2ba0ad32102ae.png");
+}	
+
+.socials--white .socials__item--tw{
+	background-image: url("../assets/7fbd31ae5e840f4e.png");
+}
+
+.socials--white .socials__item--in{
+	background-image: url("../assets/76650e9a509261fc.png");
+}
+
+.socials--white .socials__item--yt{
+	background-image: url("../assets/47f85efcf21d17d5.png");
+}
+
+.rotate90{
+	width: 220px;
+}
+
+.search-icon{
+	background: url("../assets/56e7736b5a5b0304.png") center no-repeat;
+}
+
+.menu-btn{
+	background: url("../assets/f5831b9df1c25490.png") center no-repeat;
+}
+
+.btn-icons--abonement{
+	background: url("../assets/250879626e4c23de.png")
+}
+
+.btn-icons--student{
+	background: url("../assets/3b6fb77c939e8d15.png")
+}
+
+.filter-block .filter-btn__link--list{
+	background: url("../assets/f5831b9df1c25490.png") center no-repeat;
+}
+
+.filter-block .active.filter-btn__link--list{
+	background: url("../assets/beb4546649bbf2ac.png") center #000 no-repeat;
+}
+
+.filter-block .filter-btn__link--calend{
+	background: url("../assets/79fbb3ce8dabff06.png") center no-repeat;
+}
+
+.filter-block .active.filter-btn__link--calend{
+
+	background: url("../assets/cd3ee9a4dcffc34f.png") center #000 no-repeat;
+}
+
+.sponsors{
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 5%;
+}
+.drop-icon{
+	background: url("../assets/d545c927bc41c144.png") no-repeat;
+}
+
+.drop-icon.active{
+	background: url("../assets/598e0aeecde64153.png") no-repeat;
+}
+
+.video-icon{
+	background-image: url("../assets/bb3f0baf9e033e56.png");
+}
+
+.rotate90 {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=-2.755455298081545e-16, M12=-1.5, M21=1.5, M22=-2.755455298081545e-16, SizingMethod='auto expand')" !important;
+	filter: progid:DXImageTransform.Microsoft.Matrix(
+            M11=-2.755455298081545e-16,
+            M12=-1.5,
+            M21=1.5,
+            M22=-2.755455298081545e-16,
+            SizingMethod='auto expand') !important;
+}
+
+.aside-slide:hover {
+	width: 650px;
+}
+
+.aside-slide .rotate90 {
+	left: 0.7em;
+}
+.SumoSelect > .CaptionCont > label > i {
+	background-image: url("../assets/0b6a7e4ec195aab5.png");
+}
+.filter-icon{
+	background: url("../assets/0b6a7e4ec195aab5.png") no-repeat;
+}
+
+.filter-active .filter-icon{
+	background: url("../assets/75022b65d4850594.png") no-repeat;
+    background-position-x: left;
+    background-position-y: center;
+
+}
+
+.check__label:before{
+	background: url("../assets/905deb8058b26255.png") no-repeat;
+}
+
+.back-link__icon{
+	background: url("../assets/208e604f6b747e30.png") center no-repeat;
+}
+
+.cusotm-drop.active .drop-icon{
+	background: url("../assets/119453d39e62bcf2.png") no-repeat;
+}
+.actor-image{
+	background-color: #9e9e9e;
+}
+.filter-block--repert{
+	margin-top: -54px;
+}
+
+.actor-header{
+	background-color: #000;
+}
+.head-tab-icon{
+	background: url("../assets/2b0e806b70b43ca7.png") no-repeat;
+}
+.form-elem{
+	margin: 30% 15%;
+	position: relative;
+}
+.input-search-icon{
+    background: url("../assets/3e37f0b784827593.png") no-repeat;
+}
+.wrap .form-item .input-search-icon{
+	top: 21px;
+}
+.error__search .input-search-icon{
+	top: 11px;
+}
