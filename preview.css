@@ -52,7 +52,7 @@ html, body, .aside-part { background-color: var(--preview-background); }
 :root[data-preview-design="refined"] .actors__link,
 :root[data-preview-design="refined"] .poster-item__description { color:#2A2A2A; }
 :root[data-preview-design="refined"] .age-limit { background-color:#F2E6D1 !important; color:#5D0323; }
-:root[data-preview-design="refined"] .premiere { background:#F2E6D1; color:#5D0323; border-left:3px solid #E2B167; padding:5px 9px; }
+:root[data-preview-design="refined"] .premiere { background:#5D0323; color:#FFFFFF; border-left:none; padding:5px 9px; }
 :root[data-preview-design="refined"] .performances-more-link { background:#5D0323; color:#FFFFFF; }
 :root[data-preview-design="refined"] .performances-more-link:hover { background:#2A2A2A; }
 :root[data-preview-design="refined"] .aside-part:after { background:#F2E6D1; }
