@@ -1,2 +1,6 @@
 /* Desktop only. Brand colours pending. */
 html,body{min-width:1280px}html{scroll-behavior:smooth}a,button{transition:color .18s ease,background-color .18s ease,border-color .18s ease}
+
+/* Client palette, desktop preview */
+html, body, .aside-part { background-color: #F2E6D1; }
+.logo img, .aside-part--small .logo img { height: auto; object-fit: contain; }
