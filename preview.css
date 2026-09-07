@@ -6,6 +6,16 @@ html,body{min-width:1280px}html{scroll-behavior:smooth}a,button{transition:color
 html, body, .aside-part { background-color: #FFFFFF; }
 .logo img, .aside-part--small .logo img { height: auto; object-fit: contain; }
 
+/* Burgundy month navigation, dates, and venue labels */
+.archive-wrapper .month-season--prev .choose-type,
+.archive-wrapper .month-season--prev .choose-type:hover,
+.data .number-day,
+.data .number-day .info-item,
+.data .number-day__month,
+.data .day-week,
+.data .info-item--right,
+.poster-item__info .info-item { color: var(--brand-burgundy); }
+
 /* Gold performance separators and date underlines */
 .data-item { border-top-color: var(--brand-yellow); }
 .data-item:last-child { border-bottom-color: var(--brand-yellow); }

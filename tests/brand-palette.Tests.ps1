@@ -35,6 +35,31 @@ if ($previewJs -match 'previewDesign|previewBackground|design-toggle|background-
 if ($previewCss -notmatch 'html, body, \.aside-part\s*\{\s*background-color:\s*#FFFFFF') {
     $failures.Add('The page and sidebar are not fixed to a white background')
 }
+
+$cssRules = @{}
+$cssForRules = $previewCss -replace '(?s)/\*.*?\*/', ''
+foreach ($match in [regex]::Matches($cssForRules, '(?s)([^{}]+)\{([^{}]*)\}')) {
+    foreach ($selector in $match.Groups[1].Value.Split(',')) {
+        $selectorName = $selector.Trim()
+        $cssRules[$selectorName] = [string]$cssRules[$selectorName] + "`n" + $match.Groups[2].Value
+    }
+}
+$burgundySelectors = @(
+    '.archive-wrapper .month-season--prev .choose-type'
+    '.archive-wrapper .month-season--prev .choose-type:hover'
+    '.data .number-day'
+    '.data .number-day .info-item'
+    '.data .number-day__month'
+    '.data .day-week'
+    '.data .info-item--right'
+    '.poster-item__info .info-item'
+)
+foreach ($selector in $burgundySelectors) {
+    if (-not $cssRules.ContainsKey($selector) -or $cssRules[$selector] -notmatch 'color:\s*var\(--brand-burgundy\)') {
+        $failures.Add("$selector is not fixed to the approved burgundy")
+    }
+}
+
 if ($logo -notmatch '#e2b267' -or $logo -match '#e2b167') {
     $failures.Add('The logo does not exclusively use the approved yellow #E2B267')
 }
