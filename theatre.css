@@ -6,6 +6,7 @@ html, body { min-width: 1280px; background: #fff; }
 .theatre-preview .main-content a, .theatre-preview .subtitle,
 .theatre-preview .subtitle-small, .theatre-preview .text-article { color: #55052D; }
 .theatre-preview .navbar-top, .theatre-preview .top-menu { background: transparent; }
+.theatre-preview .top-menu { padding-top: 48px; }
 .theatre-preview .navbar-top__link,
 .theatre-preview .navbar-top__link.active,
 .theatre-preview .navbar-top__link:hover,

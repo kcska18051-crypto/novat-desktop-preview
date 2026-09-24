@@ -26,6 +26,8 @@ try {
   assert.ok(await page.locator('#theatre').count());
   assert.ok(await page.locator('#partners').count());
   assert.equal(await page.locator('.background-toggle').count(), 0);
+  const menuGap = await page.evaluate(() => document.querySelector('.top-menu__link').getBoundingClientRect().top - document.querySelector('.top-banner').getBoundingClientRect().bottom);
+  assert.ok(menuGap >= 24, `section navigation must breathe below the photo, got ${menuGap}px`);
   const nav = page.locator('.navbar-top__link').nth(1);
   assert.equal(await nav.evaluate(el => getComputedStyle(el).color), 'rgb(226, 178, 103)', 'default hero label must remain readable');
   await nav.hover();
