@@ -135,10 +135,9 @@ html, body { background-color: #FFFFFF; }
 
 /* Editorial performance cards */
 .afisha-card { border-top: 1px solid var(--brand-yellow); padding: 24px 0 34px; }
-.afisha-card__grid { display: grid; grid-template-columns: minmax(110px, .7fr) minmax(220px, 1.35fr) minmax(320px, 2.5fr) minmax(190px, 1fr); gap: 28px; align-items: start; }
+.afisha-card__grid { display: grid; grid-template-columns: minmax(80px, .5fr) minmax(160px, 240px) minmax(280px, 2.5fr) minmax(160px, 1fr); gap: 24px; align-items: start; }
 .afisha-card__date { color: var(--brand-burgundy); display: flex; flex-direction: column; }
 .afisha-card__date strong { color: var(--brand-burgundy); font-size: clamp(54px, 5vw, 82px); font-weight: 500; line-height: .9; }
-.afisha-card__date span { margin-top: 8px; font-size: 16px; text-transform: lowercase; }
 .afisha-card__image { aspect-ratio: 4 / 3; margin: 0; overflow: hidden; background: var(--brand-burgundy); }
 .afisha-card__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .afisha-card__image.is-fallback::after { content: "НОВАТ"; display: grid; place-items: center; width: 100%; height: 100%; color: var(--brand-yellow); font-size: 28px; letter-spacing: .08em; }
@@ -172,17 +171,46 @@ body.afisha-drawer-open { overflow: visible; }
 #list .afisha-card::before, #list .afisha-card::after { content: none; }
 
 @media (max-width: 1180px) {
-  .afisha-card__grid { grid-template-columns: 100px minmax(200px, 1fr) minmax(280px, 1.6fr); }
+  .afisha-card__grid { grid-template-columns: 80px minmax(150px, 200px) minmax(0, 1fr); }
   .afisha-card__meta { grid-column: 3; }
 }
 
 @media (max-width: 767px) {
   html, body { min-width: 0; }
   .afisha-card { padding: 20px 0 28px; }
-  .afisha-card__grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-  .afisha-card__date, .afisha-card__main, .afisha-card__meta { grid-column: 1; }
-  .afisha-card__date strong { font-size: 54px; }
-  .afisha-card__image { width: 100%; }
-  .afisha-card__title { font-size: 32px; }
+  .afisha-card__grid { grid-template-columns: 96px minmax(0, 1fr); gap: 16px; }
+  .afisha-card__date { grid-column: 1 / -1; }
+  .afisha-card__main, .afisha-card__meta { grid-column: 2; min-width: 0; }
+  .afisha-card__date strong { font-size: 46px; }
+  .afisha-card__image { width: 100%; aspect-ratio: 4 / 5; }
+  .afisha-card__title { font-size: 26px; line-height: 1.08; margin: 12px 0 18px; overflow-wrap: anywhere; }
+  .afisha-card__schedule { font-size: 11px; flex-wrap: wrap; gap: 5px; }
+  .afisha-card__age { font-size: 11px; margin-left: 2px; }
+  .afisha-card__actions { gap: 8px; flex-wrap: wrap; }
+  .afisha-buy { font-size: 12px; padding: 12px; }
+  .afisha-pushkin { width: 48px; }
+  .afisha-card__meta { font-size: 12px; }
+  .afisha-card__director { margin: 0 0 12px; }
   .afisha-drawer { width: 100vw; }
+}
+
+.novat-mobile-header, .novat-mobile-title { display: none; }
+.novat-mobile-menu { border: 0; background: var(--brand-burgundy); color: var(--brand-yellow); }
+@media (max-width: 767px) {
+  .aside-part { display: none !important; }
+  .novat-mobile-header { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; height: 84px; padding: 12px 20px; background: var(--brand-burgundy); }
+  .novat-mobile-toggle { display: flex; flex-direction: column; justify-content: center; gap: 6px; width: 44px; height: 44px; border: 1px solid var(--brand-yellow); background: transparent; padding: 10px; }
+  .novat-mobile-toggle span { height: 1px; width: 22px; background: var(--brand-yellow); }
+  .novat-mobile-logo { justify-self: center; width: 122px; }
+  .novat-mobile-logo img { display: block; width: 100%; max-height: 54px; }
+  .novat-mobile-title { display: block; font-size: 38px; margin: 28px 0 24px; color: var(--brand-burgundy); }
+  .archive-wrapper, .filter-block__top { border-color: var(--brand-yellow); }
+  .novat-mobile-menu { margin: 0; padding: 20px 26px; width: 100%; max-width: none; height: 100dvh; max-height: none; }
+  .novat-mobile-menu::backdrop { background: var(--brand-burgundy); }
+  .novat-mobile-menu__top { display: flex; align-items: center; justify-content: space-between; font-size: 24px; margin-bottom: 24px; }
+  .novat-mobile-close { width: 44px; height: 44px; font-size: 32px; border: 1px solid var(--brand-yellow); color: inherit; background: transparent; }
+  .novat-mobile-account { display: block; text-align: right; margin: 0 0 28px; color: var(--brand-yellow); }
+  .novat-mobile-menu .navigation__link { display: block; padding: 18px 0; margin: 0; color: var(--brand-yellow); font-size: 18px; border-top: 1px solid var(--brand-yellow); }
+  .novat-mobile-menu a:hover, .novat-mobile-menu a:focus-visible { color: var(--brand-cream); }
+  .novat-mobile-slogan { margin-top: 30px; font-size: 12px; letter-spacing: .07em; }
 }

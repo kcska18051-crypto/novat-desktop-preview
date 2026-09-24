@@ -47,7 +47,7 @@
     card.dataset.dayLabel = `${monthHeading(data.month)}, ${data.weekday}`;
     card.innerHTML = `
       <div class="afisha-card__grid">
-        <div class="afisha-card__date"><strong>${escapeHtml(data.day)}</strong><span>${escapeHtml(data.month)}</span></div>
+        <div class="afisha-card__date" aria-label="${escapeHtml(data.day + ' ' + data.month)}"><strong>${escapeHtml(data.day)}</strong></div>
         <figure class="afisha-card__image"><img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}"></figure>
         <div class="afisha-card__main">
           <div class="afisha-card__schedule"><span class="afisha-card__venue">${escapeHtml(data.venue)}</span><span aria-hidden="true">·</span><time class="afisha-card__time">${escapeHtml(data.time)}</time></div>
@@ -99,8 +99,58 @@
     activeTrigger = null;
   }
 
+  function createMobileHeader() {
+    if (document.querySelector('.novat-mobile-header')) return;
+    const logo = document.querySelector('.aside-part .logo img').getAttribute('src');
+    const navigation = document.querySelector('.aside-part .navigation').innerHTML;
+    document.body.insertAdjacentHTML('afterbegin', `<header class="novat-mobile-header">
+      <button class="novat-mobile-toggle" type="button" aria-label="Открыть меню" aria-controls="novat-mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <a class="novat-mobile-logo" href="#" aria-label="НОВАТ — главная"><img src="${escapeHtml(logo)}" alt="НОВАТ"></a>
+    </header>
+    <dialog id="novat-mobile-menu" class="novat-mobile-menu" aria-label="Меню НОВАТа">
+      <div class="novat-mobile-menu__top"><span>НОВАТ</span><button type="button" class="novat-mobile-close" aria-label="Закрыть меню">×</button></div>
+      <a class="novat-mobile-account" href="#">Личный кабинет</a>
+      <nav aria-label="Основная навигация">${navigation}</nav>
+      <p class="novat-mobile-slogan">ВЕЛИКИЙ ТЕАТР ПОБЕДЫ</p>
+    </dialog>`);
+    const toggle = document.querySelector('.novat-mobile-toggle');
+    const menu = document.querySelector('#novat-mobile-menu');
+    toggle.addEventListener('click', () => {
+      menu.showModal();
+      document.documentElement.classList.add('afisha-drawer-open');
+      toggle.setAttribute('aria-expanded', 'true');
+    });
+    menu.querySelector('.novat-mobile-close').addEventListener('click', () => menu.close());
+    menu.addEventListener('close', () => {
+      document.documentElement.classList.remove('afisha-drawer-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus({ preventScroll: true });
+    });
+    matchMedia('(max-width: 767px)').addEventListener('change', event => {
+      if (!event.matches && menu.open) menu.close();
+    });
+    document.querySelector('.archive-wrapper').insertAdjacentHTML('beforebegin', '<h1 class="novat-mobile-title">Афиша</h1>');
+    const filterToggle = document.querySelector('[aria-controls="collapseExample"]');
+    const filter = document.querySelector('#collapseExample');
+    const updateFilter = () => {
+      const expanded = filter.classList.contains('in');
+      filterToggle.setAttribute('aria-expanded', String(expanded));
+      filterToggle.querySelector('.c-filter-text').style.display = expanded ? 'none' : '';
+      filterToggle.querySelector('.c-filter-text-hide').style.display = expanded ? '' : 'none';
+    };
+    if (matchMedia('(max-width: 767px)').matches) filter.classList.remove('in');
+    filterToggle.setAttribute('role', 'button');
+    filterToggle.tabIndex = 0;
+    filterToggle.addEventListener('click', updateFilter);
+    filterToggle.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); filterToggle.click(); }
+    });
+    updateFilter();
+  }
+
   function init() {
     createDrawer();
+    createMobileHeader();
     const root = document.querySelector('#list .c-list-wrap');
     if (!root || root.dataset.editorialReady) return;
     root.dataset.editorialReady = 'true';

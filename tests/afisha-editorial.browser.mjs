@@ -113,9 +113,25 @@ try {
     order: ['.afisha-card__date', '.afisha-card__image', '.afisha-card__main', '.afisha-card__meta'].map(selector => Math.round(document.querySelector(`.afisha-card ${selector}`).getBoundingClientRect().top))
   }));
   assert.ok(mobile.overflow <= 0, 'mobile page must not overflow horizontally');
-  assert.equal(mobile.columns.split(' ').length, 1);
+  assert.equal(mobile.columns.split(' ').length, 2);
   assert.equal(mobile.monthPosition, 'sticky');
   assert.deepEqual(mobile.order, [...mobile.order].sort((a, b) => a - b));
+  assert.equal(await page.locator('.afisha-card__date').first().innerText(), '05');
+  const toggle = page.getByRole('button', { name: 'Открыть меню', exact: true });
+  await toggle.click();
+  assert.equal(await page.locator('#novat-mobile-menu').evaluate(el => el.open), true);
+  assert.equal(await page.locator('#novat-mobile-menu').getByRole('link', {name: 'Афиша', exact: true}).isVisible(), true);
+  await page.keyboard.press('Escape');
+  assert.equal(await toggle.getAttribute('aria-expanded'), 'false');
+  assert.equal(await toggle.evaluate(el => el === document.activeElement), true);
+  await toggle.click();
+  await page.getByRole('button', {name: 'Закрыть меню', exact: true}).click();
+  assert.equal(await page.locator('#novat-mobile-menu').evaluate(el => el.open), false);
+  const filterToggle = page.locator('[aria-controls="collapseExample"]');
+  await filterToggle.click();
+  assert.equal(await page.locator('#collapseExample').isVisible(), true);
+  await filterToggle.click();
+  assert.equal(await page.locator('#collapseExample').isVisible(), false);
   await checkScrollingAndDrawer();
   await page.locator('.afisha-cast-trigger').first().click();
   const drawerWidth = await page.locator('.afisha-drawer').evaluate(element => Math.round(element.getBoundingClientRect().width));
