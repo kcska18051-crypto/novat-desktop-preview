@@ -49,23 +49,44 @@ html, body { background-color: #FFFFFF; }
   -webkit-mask: url("assets/22de3b36535c9393.svg?v=brand-8") center / contain no-repeat;
   mask: url("assets/22de3b36535c9393.svg?v=brand-8") center / contain no-repeat;
 }
-.aside-part .socials__item {
-  background: var(--brand-yellow);
-  -webkit-mask: url("assets/356a9e07433e6c5f.svg?v=brand-8") center / contain no-repeat;
-  mask: url("assets/356a9e07433e6c5f.svg?v=brand-8") center / contain no-repeat;
+.aside-part .socials__item,
+.aside-part .socials__item:hover {
+  background: none;
+  -webkit-mask: none;
+  mask: none;
+  color: var(--brand-yellow);
 }
-.aside-part .socials__item--tg {
-  -webkit-mask-image: url("assets/d3d2446f3c46f713.svg?v=brand-8");
-  mask-image: url("assets/d3d2446f3c46f713.svg?v=brand-8");
-}
-.aside-part .socials__item--max { background: none; -webkit-mask: none; mask: none; }
+.aside-part .socials__item--max { background: none; }
 .aside-part .socials__item--max path { fill: var(--brand-yellow); }
-.aside-part .aside-block .additions__link:has(img) {
-  background: var(--brand-yellow);
-  -webkit-mask: url("assets/a1a3b252e9af548c.svg?v=brand-8") center / contain no-repeat;
-  mask: url("assets/a1a3b252e9af548c.svg?v=brand-8") center / contain no-repeat;
+.aside-part .button-special {
+  background: transparent;
+  background-color: transparent !important;
+  color: var(--brand-yellow);
 }
-.aside-part .aside-block .additions__link:has(img) img { opacity: 0; }
+.sidebar-pictogram {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--brand-yellow);
+  fill: currentColor;
+}
+.sidebar-pictogram--eye { width: 23px; height: 23px; }
+.sidebar-pictogram--accessibility { width: 19px; height: 23px; }
+.sidebar-accessibility { width: 19px; height: 23px; }
+.culture-logo {
+  display: inline-flex;
+  margin: 25px 0;
+  align-items: baseline;
+  white-space: nowrap;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(26px, 2.05vw, 42px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  text-decoration: none;
+}
+.culture-logo__name { color: #fff; }
+.culture-logo__rf { color: #f00; }
 
 /* Burgundy month navigation, dates, and venue labels */
 .archive-wrapper .month-season--prev .choose-type,
