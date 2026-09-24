@@ -38,6 +38,7 @@ try {
   assert.match(await first.locator('.afisha-card__image img').getAttribute('src'), /^assets\//);
   const dateKeys = await page.locator('.afisha-card').evaluateAll(cards => cards.map(card => card.dataset.dateKey));
   assert.equal(await page.locator('.afisha-day-heading').count(), new Set(dateKeys).size, 'duplicate dates share one day heading');
+  assert.equal((await page.locator('.afisha-day-heading').first().innerText()).trim(), 'СЕНТЯБРЬ, СБ');
   const noCast = page.locator('.afisha-card[data-has-cast="false"]').first();
   if (await noCast.count()) assert.equal(await noCast.locator('.afisha-cast-trigger').count(), 0);
   const noDirector = page.locator('.afisha-card[data-has-director="false"]').first();

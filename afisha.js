@@ -3,6 +3,10 @@
   const normalize = value => value.replace(/\s+/g, ' ').trim().toLocaleLowerCase('ru-RU');
   const text = (root, selector) => root.querySelector(selector)?.textContent.replace(/\s+/g, ' ').trim() || '';
   const escapeHtml = value => value.replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
+  const monthHeading = month => ({
+    января: 'январь', февраля: 'февраль', марта: 'март', апреля: 'апрель', мая: 'май', июня: 'июнь',
+    июля: 'июль', августа: 'август', сентября: 'сентябрь', октября: 'октябрь', ноября: 'ноябрь', декабря: 'декабрь'
+  })[normalize(month)] || month;
 
   function imageIndex() {
     return new Map([...document.querySelectorAll('#calendar img.data-item__background')].map(image => [
@@ -40,7 +44,7 @@
   function renderCard(card, data, showHeading) {
     card.classList.add('afisha-card');
     card.dataset.title = data.title;
-    card.innerHTML = `${showHeading ? `<h2 class="afisha-day-heading"><span>${escapeHtml(data.month)}, ${escapeHtml(data.weekday)}</span></h2>` : ''}
+    card.innerHTML = `${showHeading ? `<h2 class="afisha-day-heading"><span>${escapeHtml(monthHeading(data.month))}, ${escapeHtml(data.weekday)}</span></h2>` : ''}
       <div class="afisha-card__grid">
         <div class="afisha-card__date"><strong>${escapeHtml(data.day)}</strong><span>${escapeHtml(data.month)}</span></div>
         <figure class="afisha-card__image"><img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}"></figure>
