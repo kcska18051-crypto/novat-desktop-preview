@@ -137,17 +137,17 @@ html, body { background-color: #FFFFFF; }
 .afisha-card { border-top: 1px solid var(--brand-yellow); padding: 24px 0 34px; }
 .afisha-card__grid { display: grid; grid-template-columns: minmax(80px, .5fr) minmax(140px, 200px) minmax(280px, 2.5fr) minmax(160px, 1fr); gap: 24px; align-items: start; }
 .afisha-card__date { color: var(--brand-burgundy); display: flex; flex-direction: column; }
-.afisha-card__date strong { color: var(--brand-burgundy); font-size: clamp(54px, 5vw, 82px); font-weight: 500; line-height: .9; }
+.afisha-card__date strong { color: var(--brand-burgundy); font-size: clamp(40px, 3.5vw, 56px); font-weight: 500; line-height: .9; }
 .afisha-card__image { aspect-ratio: 4 / 3; margin: 0; overflow: hidden; background: var(--brand-burgundy); }
 .afisha-card__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .afisha-card__image.is-fallback::after { content: "НОВАТ"; display: grid; place-items: center; width: 100%; height: 100%; color: var(--brand-yellow); font-size: 28px; letter-spacing: .08em; }
 .afisha-card__image.is-fallback img { display: none; }
 .afisha-card__schedule { display: flex; gap: 8px; color: var(--brand-burgundy); font-size: 14px; text-transform: uppercase; }
-.afisha-card__title { margin: 18px 0 24px; color: var(--brand-burgundy); font-size: clamp(30px, 3vw, 52px); line-height: 1; }
+.afisha-card__title { margin: 18px 0 24px; color: var(--brand-burgundy); font-size: clamp(26px, 2.2vw, 36px); line-height: 1.1; }
 .afisha-card__age { display: inline-block; margin-left: 8px; color: var(--brand-burgundy); font-size: 14px; font-weight: 400; vertical-align: top; }
 .afisha-card__actions { display: flex; align-items: center; gap: 16px; }
 .afisha-card__description { max-width: 54ch; margin: -8px 0 24px; font-size: 16px; line-height: 1.5; color: var(--brand-burgundy); white-space: pre-line; }
-.afisha-buy { border: 1px solid var(--brand-burgundy); background: var(--brand-burgundy); color: var(--brand-yellow); padding: 13px 20px; font-weight: 600; text-transform: uppercase; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; }
+.afisha-buy { border: 1px solid var(--brand-burgundy); background: var(--brand-burgundy); color: var(--brand-yellow); padding: 9px 14px; font-size: 13px; line-height: 1.3; font-weight: 600; text-transform: uppercase; display: inline-flex; align-items: center; justify-content: center; min-height: 36px; }
 .afisha-buy:hover, .afisha-buy:focus-visible { background: var(--brand-yellow); color: var(--brand-burgundy); }
 .afisha-buy:focus-visible { outline: 2px solid var(--brand-burgundy); outline-offset: 3px; }
 .afisha-pushkin { width: 72px; height: auto; }
@@ -180,17 +180,17 @@ body.afisha-drawer-open { overflow: visible; }
 @media (max-width: 767px) {
   html, body { min-width: 0; }
   .afisha-card { padding: 20px 0 28px; }
-  .afisha-card__grid { grid-template-columns: 80px minmax(0, 1fr); gap: 16px; }
+  .afisha-card__grid { grid-template-columns: minmax(0, 1fr); gap: 14px; }
   .afisha-card__date { grid-column: 1 / -1; }
-  .afisha-card__main, .afisha-card__meta { grid-column: 2; min-width: 0; }
-  .afisha-card__date strong { font-size: 46px; }
-  .afisha-card__image { width: 100%; aspect-ratio: 4 / 5; }
-  .afisha-card__title { font-size: 26px; line-height: 1.08; margin: 12px 0 18px; overflow-wrap: anywhere; }
+  .afisha-card__main, .afisha-card__meta { grid-column: 1; min-width: 0; }
+  .afisha-card__date strong { font-size: 34px; }
+  .afisha-card__image { width: 100%; aspect-ratio: 2 / 1; max-height: 180px; }
+  .afisha-card__title { font-size: 22px; line-height: 1.15; margin: 12px 0 18px; overflow-wrap: anywhere; }
   .afisha-card__description { margin: -4px 0 20px; font-size: 13px; line-height: 1.45; }
   .afisha-card__schedule { font-size: 11px; flex-wrap: wrap; gap: 5px; }
   .afisha-card__age { font-size: 11px; margin-left: 2px; }
   .afisha-card__actions { gap: 8px; flex-wrap: wrap; }
-  .afisha-buy { font-size: 12px; padding: 12px; }
+  .afisha-buy { font-size: 11px; padding: 8px 10px; }
   .afisha-pushkin { width: 48px; }
   .afisha-card__meta { font-size: 12px; }
   .afisha-card__director { margin: 0 0 12px; }
@@ -198,6 +198,8 @@ body.afisha-drawer-open { overflow: visible; }
 }
 
 .novat-mobile-header, .novat-mobile-title { display: none; }
+.archive-wrapper { position: relative; overflow: visible; padding-bottom: 16px; border: 0; }
+.archive-wrapper::after { content: ""; position: absolute; bottom: 0; left: var(--month-strip-left, 0px); width: var(--month-strip-width, 100%); height: 1px; background: rgb(226 178 103 / 45%); pointer-events: none; }
 .novat-mobile-menu { border: 0; background: var(--brand-burgundy); color: var(--brand-yellow); }
 @media (max-width: 767px) {
   .aside-part { display: none !important; }

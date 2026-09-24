@@ -155,6 +155,15 @@
   function init() {
     createDrawer();
     createMobileHeader();
+    const archive = document.querySelector('.archive-wrapper');
+    const content = document.querySelector('.main-content');
+    const sizeMonthStrip = () => {
+      const bounds = content.getBoundingClientRect();
+      archive.style.setProperty('--month-strip-left', `${bounds.left - archive.getBoundingClientRect().left}px`);
+      archive.style.setProperty('--month-strip-width', `${bounds.width}px`);
+    };
+    new ResizeObserver(sizeMonthStrip).observe(content);
+    sizeMonthStrip();
     const root = document.querySelector('#list .c-list-wrap');
     if (!root || root.dataset.editorialReady) return;
     root.dataset.editorialReady = 'true';

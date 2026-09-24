@@ -113,7 +113,7 @@ try {
     order: ['.afisha-card__date', '.afisha-card__image', '.afisha-card__main', '.afisha-card__meta'].map(selector => Math.round(document.querySelector(`.afisha-card ${selector}`).getBoundingClientRect().top))
   }));
   assert.ok(mobile.overflow <= 0, 'mobile page must not overflow horizontally');
-  assert.equal(mobile.columns.split(' ').length, 2);
+  assert.equal(mobile.columns.split(' ').length, 1);
   assert.equal(mobile.monthPosition, 'sticky');
   assert.deepEqual(mobile.order, [...mobile.order].sort((a, b) => a - b));
   assert.equal(await page.locator('.afisha-card__date').first().innerText(), '05');
