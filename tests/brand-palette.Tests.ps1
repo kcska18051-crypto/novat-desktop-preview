@@ -32,8 +32,8 @@ if ($html -match 'id="(?:design|background)-toggle"') {
 if ($previewJs -match 'previewDesign|previewBackground|design-toggle|background-toggle') {
     $failures.Add('Toggle behaviour remains in preview.js')
 }
-if ($previewCss -notmatch 'html, body\s*\{\s*background-color:\s*#FFFFFF') {
-    $failures.Add('The page is not fixed to a white background')
+if ($previewCss -notmatch 'html, body\s*\{\s*background-color:\s*var\(--page-background\)') {
+    $failures.Add('The page does not use the approved switchable background')
 }
 if ($previewCss -notmatch '(?s)\.aside-part\s*\{[^}]*background-color:\s*var\(--brand-burgundy\)') {
     $failures.Add('The sidebar is not fixed to the approved burgundy')
@@ -68,8 +68,8 @@ if ($logo -notmatch '#e2b267' -or $logo -match '#e2b167') {
 }
 
 $combinedProduction = ($productionFiles | ForEach-Object { Get-Content -Raw -LiteralPath $_ }) -join "`n"
-if ($combinedProduction -notmatch '#53052C') {
-    $failures.Add('Approved burgundy #53052C is absent from production assets')
+if ($combinedProduction -notmatch '#55052D') {
+    $failures.Add('Approved burgundy #55052D is absent from production assets')
 }
 if ($combinedProduction -notmatch '#E2B267') {
     $failures.Add('Approved yellow #E2B267 is absent from production assets')

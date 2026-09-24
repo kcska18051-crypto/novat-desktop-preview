@@ -82,7 +82,7 @@ try {
   assert.ok(visual.columns.split(' ').length >= 4);
   assert.equal(visual.divider, '1px');
   assert.equal(visual.buttonBorder, '1px');
-  assert.equal(visual.dateColor, 'rgb(83, 5, 44)');
+  assert.equal(visual.dateColor, 'rgb(85, 5, 45)');
 
   assert.ok(await page.locator('.afisha-pushkin').count() > 0, 'Pushkin marker is visible for eligible cards');
   await first.locator('.afisha-card__image img').evaluate(image => { image.src = '/assets/missing-poster.jpg'; });

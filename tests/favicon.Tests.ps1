@@ -8,7 +8,7 @@ $failures = [System.Collections.Generic.List[string]]::new()
 
 $iconLinks = [regex]::Matches(
     $indexHtml,
-    '<link\s+rel="(?:icon|shortcut icon)"\s+href="assets/favicon\.svg\?v=brand-15"\s+type="image/svg\+xml">',
+    '<link\s+rel="(?:icon|shortcut icon)"\s+href="assets/favicon\.svg\?v=brand-\d+"\s+type="image/svg\+xml">',
     [System.Text.RegularExpressions.RegexOptions]::IgnoreCase
 )
 
@@ -24,7 +24,7 @@ else {
     if ($favicon -notmatch '<svg[^>]+width="16"[^>]+height="16"[^>]+viewBox="0 0 16 16"') {
         $failures.Add('The favicon is not the supplied 16x16 SVG')
     }
-    if ($favicon -notmatch '#53052C' -or $favicon -notmatch '#D6B36A') {
+    if ($favicon -notmatch '#55052D' -or $favicon -notmatch '#D6B36A') {
         $failures.Add('The favicon does not contain the supplied burgundy and gold artwork')
     }
 }

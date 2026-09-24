@@ -22,7 +22,7 @@ html,body{min-width:1280px}html{scroll-behavior:smooth}a,button{transition:color
 /* Final client palette */
 :root { --page-background: #FFFFFF; }
 :root[data-background="beige"] { --page-background: #F6F0E3; }
-:root { --brand-burgundy: #53052C; --brand-yellow: #E2B267; --brand-cream: #F2E6D1; }
+:root { --brand-burgundy: #55052D; --brand-yellow: #E2B267; --brand-cream: #F2E6D1; }
 html, body { background-color: var(--page-background); }
 .logo img, .aside-part--small .logo img { height: auto; object-fit: contain; }
 
