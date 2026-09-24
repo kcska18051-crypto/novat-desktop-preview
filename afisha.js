@@ -53,8 +53,8 @@
         <div class="afisha-card__date" aria-label="${escapeHtml(data.day + ' ' + data.month)}"><strong>${escapeHtml(data.day)}</strong></div>
         <figure class="afisha-card__image"><img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}"></figure>
         <div class="afisha-card__main">
-          <div class="afisha-card__schedule"><span class="afisha-card__venue">${escapeHtml(data.venue)}</span><span aria-hidden="true">·</span><time class="afisha-card__time">${escapeHtml(data.time)}</time></div>
-          <h3 class="afisha-card__title">${escapeHtml(data.title)}${data.age ? ` <span class="afisha-card__age">${escapeHtml(data.age)}</span>` : ''}</h3>
+          <div class="afisha-card__schedule"><span class="afisha-card__venue">${escapeHtml(data.venue)}</span><span aria-hidden="true">·</span><time class="afisha-card__time">${escapeHtml(data.time)}</time>${data.age ? `<span class="afisha-card__age"><span aria-hidden="true">·</span> ${escapeHtml(data.age)}</span>` : ''}</div>
+          <h3 class="afisha-card__title">${escapeHtml(data.title)}</h3>
           ${data.description ? `<p class="afisha-card__description">${escapeHtml(data.description)}</p>` : ''}
           <div class="afisha-card__actions"><a href="#" class="afisha-buy">Купить билет</a>${data.pushkin ? `<img class="afisha-pushkin" src="${escapeHtml(data.pushkin)}" alt="Пушкинская карта">` : ''}</div>
         </div>
