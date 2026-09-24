@@ -1,6 +1,24 @@
 /* Desktop-only client preview with the approved brand palette. */
 html,body{min-width:1280px}html{scroll-behavior:smooth}a,button{transition:color .18s ease,background-color .18s ease,border-color .18s ease}
 
+@font-face {
+  font-family: "Novat Engravers Gothic";
+  src: url("assets/EngraversGothic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Novat Abril Fatface";
+  src: url("assets/AbrilFatface-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.afisha-card__title, .novat-mobile-title { font-family: "Novat Engravers Gothic", sans-serif; font-weight: 400; }
+.afisha-card__date strong { font-family: "Novat Abril Fatface", serif; }
+.afisha-card__title .afisha-card__age { font-family: "Lato", "Segoe UI", Helvetica, Arial, sans-serif; }
+
 /* Final client palette */
 :root { --page-background: #FFFFFF; }
 :root[data-background="beige"] { --page-background: #F6F0E3; }
@@ -139,7 +157,7 @@ html, body { background-color: var(--page-background); }
 .afisha-card { border-top: 1px solid var(--brand-yellow); padding: 24px 0 34px; }
 .afisha-card__grid { display: grid; grid-template-columns: minmax(80px, .5fr) minmax(140px, 200px) minmax(280px, 2.5fr) minmax(160px, 1fr); gap: 24px; align-items: start; }
 .afisha-card__date { color: var(--brand-burgundy); display: flex; flex-direction: column; }
-.afisha-card__date strong { color: var(--brand-burgundy); font-size: clamp(40px, 3.5vw, 56px); font-weight: 500; line-height: .9; }
+.afisha-card__date strong { color: var(--brand-burgundy); font-size: clamp(40px, 3.5vw, 56px); font-weight: 400; line-height: .9; }
 .afisha-card__image { aspect-ratio: 4 / 3; margin: 0; overflow: hidden; background: var(--brand-burgundy); }
 .afisha-card__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .afisha-card__image.is-fallback::after { content: "НОВАТ"; display: grid; place-items: center; width: 100%; height: 100%; color: var(--brand-yellow); font-size: 28px; letter-spacing: .08em; }
