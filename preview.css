@@ -165,3 +165,22 @@ html, body { background-color: #FFFFFF; }
 .afisha-drawer__content { padding: 28px; }
 .afisha-drawer__content .actors__item { padding: 12px 0; border-bottom: 1px solid var(--brand-yellow); }
 .afisha-drawer-open { overflow: hidden; }
+
+#list .afisha-card.data-item { margin: 0; min-height: 0; background: #fff; }
+#list .afisha-card::before, #list .afisha-card::after { content: none; }
+
+@media (max-width: 1180px) {
+  .afisha-card__grid { grid-template-columns: 100px minmax(200px, 1fr) minmax(280px, 1.6fr); }
+  .afisha-card__meta { grid-column: 3; }
+}
+
+@media (max-width: 767px) {
+  html, body { min-width: 0; }
+  .afisha-card { padding: 20px 0 28px; }
+  .afisha-card__grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .afisha-card__date, .afisha-card__main, .afisha-card__meta { grid-column: 1; }
+  .afisha-card__date strong { font-size: 54px; }
+  .afisha-card__image { width: 100%; }
+  .afisha-card__title { font-size: 32px; }
+  .afisha-drawer { width: 100vw; }
+}

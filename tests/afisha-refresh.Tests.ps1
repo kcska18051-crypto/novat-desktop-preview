@@ -19,6 +19,10 @@ if ($html -notmatch 'class="culture-logo__name">КУЛЬТУРА\.</span>\s*<spa
     $failures.Add('Culture.RF logo must expose separately colored text on a transparent background')
 }
 
+if ($html -notmatch 'afisha\.js\?v=brand-') {
+    $failures.Add('Editorial afisha module is not loaded')
+}
+
 $desktopDates = [regex]::Matches($html, 'class="number-day desktop-inline"').Count
 $separateNumbers = [regex]::Matches($html, 'class="date-number"').Count
 if ($desktopDates -eq 0 -or $separateNumbers -ne $desktopDates) {
@@ -43,6 +47,14 @@ foreach ($pattern in $requiredPatterns) {
     if ($css -notmatch $pattern) {
         $failures.Add("Missing approved afisha refresh rule: $pattern")
     }
+}
+
+foreach ($pattern in @(
+    '(?s)\.afisha-card\s*\{[^}]*border-top:\s*1px\s+solid\s+var\(--brand-yellow\)'
+    '(?s)\.afisha-buy\s*\{[^}]*border:\s*1px\s+solid\s+var\(--brand-burgundy\)'
+    '(?s)\.afisha-drawer__header\s*\{[^}]*border-bottom:\s*1px\s+solid\s+var\(--brand-yellow\)'
+)) {
+    if ($css -notmatch $pattern) { $failures.Add("Missing editorial afisha rule: $pattern") }
 }
 
 if ($failures.Count -gt 0) {

@@ -80,6 +80,22 @@ try {
   await page.keyboard.press('Shift+Tab');
   assert.equal(await drawer.evaluate(element => element.contains(document.activeElement)), true);
   await page.locator('.afisha-drawer__close').click();
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.reload({ waitUntil: 'networkidle' });
+  const mobile = await page.evaluate(() => ({
+    overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+    columns: getComputedStyle(document.querySelector('.afisha-card__grid')).gridTemplateColumns,
+    monthPosition: getComputedStyle(document.querySelector('.c-list-wrap > .month')).position,
+    order: ['.afisha-card__date', '.afisha-card__image', '.afisha-card__main', '.afisha-card__meta'].map(selector => Math.round(document.querySelector(`.afisha-card ${selector}`).getBoundingClientRect().top))
+  }));
+  assert.equal(mobile.overflow, 0);
+  assert.equal(mobile.columns.split(' ').length, 1);
+  assert.equal(mobile.monthPosition, 'sticky');
+  assert.deepEqual(mobile.order, [...mobile.order].sort((a, b) => a - b));
+  await page.locator('.afisha-cast-trigger').first().click();
+  const drawerWidth = await page.locator('.afisha-drawer').evaluate(element => Math.round(element.getBoundingClientRect().width));
+  assert.equal(drawerWidth, 390);
   console.log('Afisha editorial browser checks passed.');
 } finally {
   await browser.close();
