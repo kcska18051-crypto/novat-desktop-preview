@@ -42,6 +42,28 @@ try {
   if (await noCast.count()) assert.equal(await noCast.locator('.afisha-cast-trigger').count(), 0);
   const noDirector = page.locator('.afisha-card[data-has-director="false"]').first();
   if (await noDirector.count()) assert.equal(await noDirector.locator('.afisha-card__director').count(), 0);
+
+  const visual = await first.evaluate(card => {
+    const grid = card.querySelector('.afisha-card__grid');
+    const button = card.querySelector('.afisha-buy');
+    const date = card.querySelector('.afisha-card__date strong');
+    return {
+      grid: getComputedStyle(grid).display,
+      columns: getComputedStyle(grid).gridTemplateColumns,
+      divider: getComputedStyle(card).borderTopWidth,
+      buttonBorder: getComputedStyle(button).borderTopWidth,
+      dateColor: getComputedStyle(date).color
+    };
+  });
+  assert.equal(visual.grid, 'grid');
+  assert.ok(visual.columns.split(' ').length >= 4);
+  assert.equal(visual.divider, '1px');
+  assert.equal(visual.buttonBorder, '1px');
+  assert.equal(visual.dateColor, 'rgb(83, 5, 44)');
+
+  assert.ok(await page.locator('.afisha-pushkin').count() > 0, 'Pushkin marker is visible for eligible cards');
+  await first.locator('.afisha-card__image img').evaluate(image => { image.src = '/assets/missing-poster.jpg'; });
+  await page.waitForFunction(() => document.querySelector('.afisha-card__image')?.classList.contains('is-fallback'));
   console.log('Afisha editorial browser checks passed.');
 } finally {
   await browser.close();

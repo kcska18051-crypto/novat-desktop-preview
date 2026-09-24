@@ -53,6 +53,9 @@
     card.dataset.hasCast = String(Boolean(data.castHtml));
     card.dataset.hasDirector = String(Boolean(data.director));
     if (data.castHtml) card.querySelector('.afisha-cast-trigger')._cast = { title: data.title, html: data.castHtml };
+    const image = card.querySelector('.afisha-card__image img');
+    if (!data.image) image.closest('.afisha-card__image').classList.add('is-fallback');
+    image.addEventListener('error', () => image.closest('.afisha-card__image').classList.add('is-fallback'), { once: true });
   }
 
   function init() {
