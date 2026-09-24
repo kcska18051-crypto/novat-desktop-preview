@@ -135,7 +135,6 @@ html, body { background-color: #FFFFFF; }
 
 /* Editorial performance cards */
 .afisha-card { border-top: 1px solid var(--brand-yellow); padding: 24px 0 34px; }
-.afisha-day-heading { margin: 0 0 18px; color: var(--brand-burgundy); font-size: 15px; text-transform: uppercase; }
 .afisha-card__grid { display: grid; grid-template-columns: minmax(110px, .7fr) minmax(220px, 1.35fr) minmax(320px, 2.5fr) minmax(190px, 1fr); gap: 28px; align-items: start; }
 .afisha-card__date { color: var(--brand-burgundy); display: flex; flex-direction: column; }
 .afisha-card__date strong { color: var(--brand-burgundy); font-size: clamp(54px, 5vw, 82px); font-weight: 500; line-height: .9; }
@@ -164,7 +163,10 @@ html, body { background-color: #FFFFFF; }
 .afisha-drawer__close { width: 42px; height: 42px; border: 1px solid var(--brand-burgundy); background: transparent; color: var(--brand-burgundy); font-size: 28px; }
 .afisha-drawer__content { padding: 28px; }
 .afisha-drawer__content .actors__item { padding: 12px 0; border-bottom: 1px solid var(--brand-yellow); }
-.afisha-drawer-open { overflow: hidden; }
+html { scrollbar-gutter: stable; }
+html.afisha-drawer-open { overflow: hidden; }
+body.afisha-drawer-open { overflow: visible; }
+.afisha-drawer { overscroll-behavior: contain; }
 
 #list .afisha-card.data-item { margin: 0; min-height: 0; background: #fff; }
 #list .afisha-card::before, #list .afisha-card::after { content: none; }

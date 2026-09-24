@@ -41,10 +41,11 @@
     };
   }
 
-  function renderCard(card, data, showHeading) {
+  function renderCard(card, data) {
     card.classList.add('afisha-card');
     card.dataset.title = data.title;
-    card.innerHTML = `${showHeading ? `<h2 class="afisha-day-heading"><span>${escapeHtml(monthHeading(data.month))}, ${escapeHtml(data.weekday)}</span></h2>` : ''}
+    card.dataset.dayLabel = `${monthHeading(data.month)}, ${data.weekday}`;
+    card.innerHTML = `
       <div class="afisha-card__grid">
         <div class="afisha-card__date"><strong>${escapeHtml(data.day)}</strong><span>${escapeHtml(data.month)}</span></div>
         <figure class="afisha-card__image"><img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}"></figure>
@@ -83,7 +84,8 @@
     layer.querySelector('.afisha-drawer__title').textContent = trigger._cast.title;
     layer.querySelector('.afisha-drawer__content').innerHTML = trigger._cast.html;
     document.body.classList.add('afisha-drawer-open');
-    layer.querySelector('.afisha-drawer__close').focus();
+    document.documentElement.classList.add('afisha-drawer-open');
+    layer.querySelector('.afisha-drawer__close').focus({ preventScroll: true });
   }
 
   function closeDrawer() {
@@ -92,7 +94,8 @@
     drawer.setAttribute('aria-hidden', 'true');
     layer.hidden = true;
     document.body.classList.remove('afisha-drawer-open');
-    activeTrigger?.focus();
+    document.documentElement.classList.remove('afisha-drawer-open');
+    activeTrigger?.focus({ preventScroll: true });
     activeTrigger = null;
   }
 
@@ -102,14 +105,35 @@
     if (!root || root.dataset.editorialReady) return;
     root.dataset.editorialReady = 'true';
     const images = imageIndex();
-    let previous = '';
     root.querySelectorAll(':scope > .data-item').forEach(card => {
       const data = readCard(card, images);
       const key = `${data.day}|${data.weekday}`;
-      renderCard(card, data, key !== previous);
+      renderCard(card, data);
       card.dataset.dateKey = key;
-      previous = key;
     });
+    const heading = root.querySelector(':scope > .month');
+    const cards = [...root.querySelectorAll(':scope > .afisha-card')];
+    heading.setAttribute('role', 'heading');
+    heading.setAttribute('aria-level', '2');
+    const updateHeading = () => {
+      const edge = heading.getBoundingClientRect().bottom;
+      let current = cards[0];
+      for (const card of cards) {
+        if (card.getBoundingClientRect().top > edge + 1) break;
+        current = card;
+      }
+      if (current && heading.textContent !== current.dataset.dayLabel) heading.textContent = current.dataset.dayLabel;
+    };
+    let scheduled = false;
+    const scheduleHeading = () => {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => { scheduled = false; updateHeading(); });
+    };
+    window.addEventListener('scroll', scheduleHeading, { passive: true });
+    window.addEventListener('resize', scheduleHeading);
+    window.addEventListener('load', updateHeading);
+    updateHeading();
     document.dispatchEvent(new CustomEvent('afisha:ready'));
   }
 

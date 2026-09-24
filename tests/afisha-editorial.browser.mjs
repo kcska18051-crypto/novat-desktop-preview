@@ -36,9 +36,31 @@ try {
   }
   assert.ok((await first.locator('.afisha-card__image img').getAttribute('alt')).trim().length > 0);
   assert.match(await first.locator('.afisha-card__image img').getAttribute('src'), /^assets\//);
-  const dateKeys = await page.locator('.afisha-card').evaluateAll(cards => cards.map(card => card.dataset.dateKey));
-  assert.equal(await page.locator('.afisha-day-heading').count(), new Set(dateKeys).size, 'duplicate dates share one day heading');
-  assert.equal((await page.locator('.afisha-day-heading').first().innerText()).trim(), 'СЕНТЯБРЬ, СБ');
+  const heading = page.locator('.c-list-wrap > .month');
+  assert.equal((await heading.innerText()).trim(), 'СЕНТЯБРЬ, СБ');
+  async function checkScrollingAndDrawer() {
+    for (const [index, label] of [[1, 'СЕНТЯБРЬ, СР'], [3, 'СЕНТЯБРЬ, ПТ'], [0, 'СЕНТЯБРЬ, СБ']]) {
+      await page.locator('.afisha-card').nth(index).evaluate(card => window.scrollTo({ top: window.scrollY + card.getBoundingClientRect().top - 25, behavior: 'instant' }));
+      await page.waitForFunction(expected => document.querySelector('.c-list-wrap > .month').textContent.toUpperCase() === expected, label);
+      assert.equal(Math.round(await heading.evaluate(el => el.getBoundingClientRect().top)), 0, 'combined heading stays at the top');
+    }
+    const button = page.locator('.afisha-cast-trigger').nth(1);
+    await button.evaluate(el => window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 180, behavior: 'instant' }));
+    const position = () => button.evaluate(el => {
+      const rect = el.getBoundingClientRect();
+      return { scroll: window.scrollY, x: rect.x, y: rect.y, width: document.documentElement.clientWidth, headingY: document.querySelector('.c-list-wrap > .month').getBoundingClientRect().top };
+    });
+    const before = await position();
+    for (const close of ['Escape', 'button', 'backdrop']) {
+      await button.click();
+      assert.deepEqual(await position(), before, 'opening cast must not shift the page or sticky heading');
+      if (close === 'Escape') await page.keyboard.press('Escape');
+      else if (close === 'button') await page.locator('.afisha-drawer__close').click();
+      else await page.locator('.afisha-drawer__backdrop').evaluate(el => el.click());
+      assert.deepEqual(await position(), before, 'closing cast must preserve scroll and layout');
+    }
+  }
+  await checkScrollingAndDrawer();
   const noCast = page.locator('.afisha-card[data-has-cast="false"]').first();
   if (await noCast.count()) assert.equal(await noCast.locator('.afisha-cast-trigger').count(), 0);
   const noDirector = page.locator('.afisha-card[data-has-director="false"]').first();
@@ -90,13 +112,14 @@ try {
     monthPosition: getComputedStyle(document.querySelector('.c-list-wrap > .month')).position,
     order: ['.afisha-card__date', '.afisha-card__image', '.afisha-card__main', '.afisha-card__meta'].map(selector => Math.round(document.querySelector(`.afisha-card ${selector}`).getBoundingClientRect().top))
   }));
-  assert.equal(mobile.overflow, 0);
+  assert.ok(mobile.overflow <= 0, 'mobile page must not overflow horizontally');
   assert.equal(mobile.columns.split(' ').length, 1);
   assert.equal(mobile.monthPosition, 'sticky');
   assert.deepEqual(mobile.order, [...mobile.order].sort((a, b) => a - b));
+  await checkScrollingAndDrawer();
   await page.locator('.afisha-cast-trigger').first().click();
   const drawerWidth = await page.locator('.afisha-drawer').evaluate(element => Math.round(element.getBoundingClientRect().width));
-  assert.equal(drawerWidth, 390);
+  assert.equal(drawerWidth, await page.locator('.afisha-drawer-layer').evaluate(el => Math.round(el.getBoundingClientRect().width)));
   console.log('Afisha editorial browser checks passed.');
 } finally {
   await browser.close();
