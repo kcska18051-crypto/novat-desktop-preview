@@ -1,0 +1,56 @@
+import http from 'node:http';
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { createRequire } from 'node:module';
+const { chromium } = createRequire(import.meta.url)(process.env.NOVAT_PLAYWRIGHT_MODULE);
+const root = path.resolve(import.meta.dirname, '..');
+const server = http.createServer((req, res) => {
+  const file = path.join(root, decodeURIComponent(new URL(req.url, 'http://local').pathname));
+  fs.readFile(file, (error, data) => {
+    if (error) return res.writeHead(404).end();
+    res.setHeader('Content-Type', ({'.html':'text/html','.css':'text/css','.js':'text/javascript','.svg':'image/svg+xml'})[path.extname(file)] || 'application/octet-stream');
+    res.end(data);
+  });
+});
+await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+const browser = await chromium.launch();
+try {
+  const page = await browser.newPage({viewport:{width:1440,height:1000}});
+  const errors = [], failed = [];
+  page.on('pageerror', e => errors.push(e.message));
+  page.on('response', r => { if(r.status() >= 400) failed.push(r.url()); });
+  const response = await page.goto(`http://127.0.0.1:${server.address().port}/theatre.html`, {waitUntil:'networkidle'});
+  assert.equal(response.status(), 200, 'theatre preview must exist');
+  assert.equal(await page.locator('.aside-part').evaluate(el => getComputedStyle(el).backgroundColor), 'rgb(85, 5, 45)');
+  assert.ok(await page.locator('#theatre').count());
+  assert.ok(await page.locator('#partners').count());
+  assert.equal(await page.locator('.background-toggle').count(), 0);
+  const nav = page.locator('.navbar-top__link').nth(1);
+  assert.equal(await nav.evaluate(el => getComputedStyle(el).color), 'rgb(226, 178, 103)', 'default hero label must remain readable');
+  await nav.hover();
+  await page.waitForTimeout(250);
+  const style = await nav.evaluate(el => { const s = getComputedStyle(el); return {bg:s.backgroundColor,border:s.borderBottomWidth,color:s.borderBottomColor}; });
+  assert.equal(style.bg, 'rgba(0, 0, 0, 0)');
+  assert.equal(style.border, '1px');
+  assert.notEqual(style.color, 'rgba(0, 0, 0, 0)');
+  assert.equal(await nav.evaluate(el => getComputedStyle(el).color), 'rgb(242, 230, 209)', 'hover label must be legible over the dark hero');
+  assert.equal(await page.locator('.link-block').first().evaluate(el => getComputedStyle(el).color), 'rgb(226, 178, 103)', 'visit links must contrast with the burgundy band');
+  const before = await page.evaluate(() => ({url:location.href,scroll:scrollY,text:document.body.innerText}));
+  await nav.click();
+  assert.deepEqual(await page.evaluate(() => ({url:location.href,scroll:scrollY,text:document.body.innerText})), before);
+  const thick = await page.locator('body *').evaluateAll(els => els.filter(el => el.getClientRects().length && ['Top','Right','Bottom','Left'].some(side => parseFloat(getComputedStyle(el)['border'+side+'Width']) > 1)).map(el => el.className));
+  assert.deepEqual(thick, [], 'visible rules never exceed one pixel');
+  const broken = await page.locator('img').evaluateAll(els => els.filter(el => !el.complete || !el.naturalWidth).map(el => el.src));
+  assert.deepEqual(broken, []);
+  assert.deepEqual(errors, []);
+  assert.deepEqual(failed, []);
+  assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  fs.mkdirSync(path.join(root,'.superpowers/theatre'),{recursive:true});
+  await page.screenshot({path:path.join(root,'.superpowers/theatre/desktop.png')});
+  await page.locator('#theatre').scrollIntoViewIfNeeded();
+  await page.screenshot({path:path.join(root,'.superpowers/theatre/content.png')});
+  await page.locator('#partners').scrollIntoViewIfNeeded();
+  await page.screenshot({path:path.join(root,'.superpowers/theatre/partners.png')});
+  console.log('PASS: theatre desktop, assets, hover, one-pixel rules, inert clicks');
+} finally { await browser.close(); await new Promise(resolve => server.close(resolve)); }

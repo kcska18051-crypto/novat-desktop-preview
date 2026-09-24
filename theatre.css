@@ -1,0 +1,47 @@
+/* Desktop theatre snapshot. Keep the source layout and the approved sidebar. */
+html, body { min-width: 1280px; background: #fff; }
+.theatre-preview { color: #55052D; }
+.theatre-preview *, .theatre-preview *::before, .theatre-preview *::after { border-width: 1px !important; }
+.theatre-preview .main-content, .theatre-preview .wrap { background: #fff; color: #55052D; }
+.theatre-preview .main-content a, .theatre-preview .subtitle,
+.theatre-preview .subtitle-small, .theatre-preview .text-article { color: #55052D; }
+.theatre-preview .navbar-top, .theatre-preview .top-menu { background: transparent; }
+.theatre-preview .navbar-top__link,
+.theatre-preview .navbar-top__link.active,
+.theatre-preview .navbar-top__link:hover,
+.theatre-preview .navbar-top__link:focus-visible,
+.theatre-preview .top-menu__link,
+.theatre-preview .top-menu__link.active,
+.theatre-preview .top-menu__link:hover,
+.theatre-preview .top-menu__link:focus-visible {
+  background: transparent; box-shadow: none; color: #55052D;
+  border: 0; border-bottom: 1px solid transparent;
+}
+.theatre-preview .navbar-top__link.active,
+.theatre-preview .navbar-top__link:hover,
+.theatre-preview .navbar-top__link:focus-visible,
+.theatre-preview .top-menu__link.active,
+.theatre-preview .top-menu__link:hover,
+.theatre-preview .top-menu__link:focus-visible { border-bottom-color: #E2B267; }
+.theatre-preview .navbar-top__link::before, .theatre-preview .navbar-top__link::after,
+.theatre-preview .top-menu__link::before, .theatre-preview .top-menu__link::after { content: none; }
+.theatre-preview .link-razd, .theatre-preview .poster-razd { height: 1px; background: #E2B267; }
+.theatre-preview .link-block, .theatre-preview .bl-link, .theatre-preview .footer__content,
+.theatre-preview .info-block__group, .theatre-preview .text-article { border-color: #E2B267; }
+.theatre-preview .main-content a:hover { text-decoration-thickness: 1px; }
+.theatre-preview .img-title { color: #fff; }
+.theatre-tour-still { width: 100%; height: 100%; object-fit: cover; display: block; }
+.theatre-preview .main-content :focus-visible { outline: 1px solid #E2B267; outline-offset: 3px; }
+/* Keep approved light text over photographic and burgundy surfaces. */
+.theatre-preview .navbar-top { border-bottom-color: #E2B267; }
+.theatre-preview .main-content .navbar-top__link,
+.theatre-preview .main-content .navbar-top__link.active,
+.theatre-preview .main-content .link-block { color: #E2B267; }
+.theatre-preview .main-content .navbar-top__link:hover,
+.theatre-preview .main-content .navbar-top__link:focus-visible,
+.theatre-preview .main-content .link-block:hover,
+.theatre-preview .main-content .link-block:focus-visible { color: #F2E6D1; }
+.theatre-preview .big-block { background: #55052D; }
+.theatre-preview .subtitle--big, .theatre-preview .nav-tabs { border-color: #E2B267; }
+.theatre-preview .main-content .link-block:hover { border-color: #F2E6D1; }
+.theatre-preview .main-content a[style*="color"] { color: #55052D !important; }
