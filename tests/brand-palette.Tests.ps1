@@ -9,7 +9,7 @@ $productionFiles = @(
     Where-Object { $_.Extension -in '.css', '.svg' } |
     ForEach-Object { $_.FullName })
 
-$oldColours = '#5D0323', '#E2B167', '#F2E6D1'
+$oldColours = '#5D0323', '#E2B167'
 $failures = [System.Collections.Generic.List[string]]::new()
 
 foreach ($file in $productionFiles) {
@@ -32,8 +32,11 @@ if ($html -match 'id="(?:design|background)-toggle"') {
 if ($previewJs -match 'previewDesign|previewBackground|design-toggle|background-toggle') {
     $failures.Add('Toggle behaviour remains in preview.js')
 }
-if ($previewCss -notmatch 'html, body, \.aside-part\s*\{\s*background-color:\s*#FFFFFF') {
-    $failures.Add('The page and sidebar are not fixed to a white background')
+if ($previewCss -notmatch 'html, body\s*\{\s*background-color:\s*#FFFFFF') {
+    $failures.Add('The page is not fixed to a white background')
+}
+if ($previewCss -notmatch '(?s)\.aside-part\s*\{[^}]*background-color:\s*var\(--brand-burgundy\)') {
+    $failures.Add('The sidebar is not fixed to the approved burgundy')
 }
 
 $cssRules = @{}

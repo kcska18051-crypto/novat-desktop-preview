@@ -2,9 +2,70 @@
 html,body{min-width:1280px}html{scroll-behavior:smooth}a,button{transition:color .18s ease,background-color .18s ease,border-color .18s ease}
 
 /* Final client palette */
-:root { --brand-burgundy: #53052C; --brand-yellow: #E2B267; }
-html, body, .aside-part { background-color: #FFFFFF; }
+:root { --brand-burgundy: #53052C; --brand-yellow: #E2B267; --brand-cream: #F2E6D1; }
+html, body { background-color: #FFFFFF; }
 .logo img, .aside-part--small .logo img { height: auto; object-fit: contain; }
+
+/* Burgundy sidebar */
+.aside-part {
+  background-color: var(--brand-burgundy);
+  color: var(--brand-yellow);
+}
+.aside-part .slogan,
+.aside-part .additions__link,
+.aside-part .navigation__link { color: var(--brand-yellow); }
+.navigation__link {
+  border-top: 1px solid var(--brand-yellow);
+}
+.navigation__link.active,
+.navigation__link:hover,
+.aside-part .additions__link:hover {
+  color: var(--brand-cream);
+  border-color: var(--brand-cream);
+}
+.menu-btn {
+  width: 42px;
+  height: 36px;
+  border: 1px solid var(--brand-yellow);
+  background: none;
+}
+.menu-btn:hover { background: none; border-color: var(--brand-cream); }
+.menu-btn::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 17px;
+  width: 22px;
+  height: 1px;
+  background-color: var(--brand-yellow);
+  box-shadow: 0 -6px 0 var(--brand-yellow), 0 6px 0 var(--brand-yellow);
+}
+.menu-btn:hover::before {
+  background-color: var(--brand-cream);
+  box-shadow: 0 -6px 0 var(--brand-cream), 0 6px 0 var(--brand-cream);
+}
+.aside-part .search-icon {
+  background: var(--brand-yellow);
+  -webkit-mask: url("assets/22de3b36535c9393.svg?v=brand-8") center / contain no-repeat;
+  mask: url("assets/22de3b36535c9393.svg?v=brand-8") center / contain no-repeat;
+}
+.aside-part .socials__item {
+  background: var(--brand-yellow);
+  -webkit-mask: url("assets/356a9e07433e6c5f.svg?v=brand-8") center / contain no-repeat;
+  mask: url("assets/356a9e07433e6c5f.svg?v=brand-8") center / contain no-repeat;
+}
+.aside-part .socials__item--tg {
+  -webkit-mask-image: url("assets/d3d2446f3c46f713.svg?v=brand-8");
+  mask-image: url("assets/d3d2446f3c46f713.svg?v=brand-8");
+}
+.aside-part .socials__item--max { background: none; -webkit-mask: none; mask: none; }
+.aside-part .socials__item--max path { fill: var(--brand-yellow); }
+.aside-part .aside-block .additions__link:has(img) {
+  background: var(--brand-yellow);
+  -webkit-mask: url("assets/a1a3b252e9af548c.svg?v=brand-8") center / contain no-repeat;
+  mask: url("assets/a1a3b252e9af548c.svg?v=brand-8") center / contain no-repeat;
+}
+.aside-part .aside-block .additions__link:has(img) img { opacity: 0; }
 
 /* Burgundy month navigation, dates, and venue labels */
 .archive-wrapper .month-season--prev .choose-type,
@@ -15,6 +76,26 @@ html, body, .aside-part { background-color: #FFFFFF; }
 .data .day-week,
 .data .info-item--right,
 .poster-item__info .info-item { color: var(--brand-burgundy); }
+
+/* Lightweight one-pixel dividers */
+.data-item { border-top-width: 1px; }
+.data-item:last-child { border-bottom-width: 1px; }
+.poster-razd { height: 1px; }
+.link-razd { height: 1px; }
+.footer__content { border-top-width: 1px; }
+
+/* Date parts remain independently styleable for the upcoming fonts */
+.date-number { display: inline-block; margin-right: 4px; }
+
+/* Month label follows the schedule while the list is scrolled */
+.c-list-wrap > .month {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: block;
+  padding: 12px 0 10px;
+  background-color: #FFFFFF;
+}
 
 /* Gold performance separators and date underlines */
 .data-item { border-top-color: var(--brand-yellow); }
