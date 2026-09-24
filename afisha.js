@@ -156,6 +156,18 @@
     createDrawer();
     createMobileHeader();
     const archive = document.querySelector('.archive-wrapper');
+    if (!archive.querySelector('.background-toggle')) {
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'background-toggle';
+      toggle.textContent = 'Бежевый фон';
+      toggle.addEventListener('click', () => {
+        const beige = document.documentElement.dataset.background !== 'beige';
+        document.documentElement.dataset.background = beige ? 'beige' : 'white';
+        toggle.textContent = beige ? 'Белый фон' : 'Бежевый фон';
+      });
+      archive.append(toggle);
+    }
     const content = document.querySelector('.main-content');
     const sizeMonthStrip = () => {
       const bounds = content.getBoundingClientRect();
