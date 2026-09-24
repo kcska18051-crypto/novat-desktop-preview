@@ -25,6 +25,10 @@ try {
   assert.equal(await page.locator('.aside-part').evaluate(el => getComputedStyle(el).backgroundColor), 'rgb(85, 5, 45)');
   assert.ok(await page.locator('#theatre').count());
   assert.ok(await page.locator('#partners').count());
+  for (const selector of ['.top-text', '.subtitle', '.subtitle-small', '.img-title', '.theatre-link']) {
+    const fonts = await page.locator(selector).evaluateAll(els => els.map(el => getComputedStyle(el).fontFamily));
+    assert.ok(fonts.length && fonts.every(font => font.includes('Novat Engravers Gothic')), `${selector} uses the approved heading font`);
+  }
   assert.equal(await page.locator('.background-toggle').count(), 0);
   const menuGap = await page.evaluate(() => document.querySelector('.top-menu__link').getBoundingClientRect().top - document.querySelector('.top-banner').getBoundingClientRect().bottom);
   assert.ok(menuGap >= 24, `section navigation must breathe below the photo, got ${menuGap}px`);

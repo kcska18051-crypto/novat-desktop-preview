@@ -1,6 +1,10 @@
 /* Desktop theatre snapshot. Keep the source layout and the approved sidebar. */
 html, body { min-width: 1280px; background: #fff; }
 .theatre-preview { color: #55052D; }
+.theatre-preview .main-content :is(h1, h2, h3, h4, h5, h6, .top-text, .subtitle, .subtitle-small, .img-title, .theatre-link) {
+  font-family: "Novat Engravers Gothic", sans-serif;
+  font-weight: 400;
+}
 .theatre-preview *, .theatre-preview *::before, .theatre-preview *::after { border-width: 1px !important; }
 .theatre-preview .main-content, .theatre-preview .wrap { background: #fff; color: #55052D; }
 .theatre-preview .main-content a, .theatre-preview .subtitle,
