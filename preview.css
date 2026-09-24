@@ -135,7 +135,7 @@ html, body { background-color: #FFFFFF; }
 
 /* Editorial performance cards */
 .afisha-card { border-top: 1px solid var(--brand-yellow); padding: 24px 0 34px; }
-.afisha-card__grid { display: grid; grid-template-columns: minmax(80px, .5fr) minmax(160px, 240px) minmax(280px, 2.5fr) minmax(160px, 1fr); gap: 24px; align-items: start; }
+.afisha-card__grid { display: grid; grid-template-columns: minmax(80px, .5fr) minmax(140px, 200px) minmax(280px, 2.5fr) minmax(160px, 1fr); gap: 24px; align-items: start; }
 .afisha-card__date { color: var(--brand-burgundy); display: flex; flex-direction: column; }
 .afisha-card__date strong { color: var(--brand-burgundy); font-size: clamp(54px, 5vw, 82px); font-weight: 500; line-height: .9; }
 .afisha-card__image { aspect-ratio: 4 / 3; margin: 0; overflow: hidden; background: var(--brand-burgundy); }
@@ -146,8 +146,10 @@ html, body { background-color: #FFFFFF; }
 .afisha-card__title { margin: 18px 0 24px; color: var(--brand-burgundy); font-size: clamp(30px, 3vw, 52px); line-height: 1; }
 .afisha-card__age { display: inline-block; margin-left: 8px; color: var(--brand-burgundy); font-size: 14px; font-weight: 400; vertical-align: top; }
 .afisha-card__actions { display: flex; align-items: center; gap: 16px; }
-.afisha-buy { border: 1px solid var(--brand-burgundy); color: var(--brand-burgundy); padding: 11px 16px; text-transform: uppercase; }
-.afisha-buy:hover, .afisha-buy:focus-visible { background: var(--brand-burgundy); color: #fff; }
+.afisha-card__description { max-width: 54ch; margin: -8px 0 24px; font-size: 16px; line-height: 1.5; color: var(--brand-burgundy); white-space: pre-line; }
+.afisha-buy { border: 1px solid var(--brand-burgundy); background: var(--brand-burgundy); color: var(--brand-yellow); padding: 13px 20px; font-weight: 600; text-transform: uppercase; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; }
+.afisha-buy:hover, .afisha-buy:focus-visible { background: var(--brand-yellow); color: var(--brand-burgundy); }
+.afisha-buy:focus-visible { outline: 2px solid var(--brand-burgundy); outline-offset: 3px; }
 .afisha-pushkin { width: 72px; height: auto; }
 .afisha-card__meta { color: var(--brand-burgundy); font-size: 14px; }
 .afisha-cast-trigger { border: 0; border-bottom: 1px solid var(--brand-burgundy); background: transparent; color: var(--brand-burgundy); padding: 0; text-transform: uppercase; }
@@ -171,19 +173,20 @@ body.afisha-drawer-open { overflow: visible; }
 #list .afisha-card::before, #list .afisha-card::after { content: none; }
 
 @media (max-width: 1180px) {
-  .afisha-card__grid { grid-template-columns: 80px minmax(150px, 200px) minmax(0, 1fr); }
+  .afisha-card__grid { grid-template-columns: 80px minmax(130px, 170px) minmax(0, 1fr); }
   .afisha-card__meta { grid-column: 3; }
 }
 
 @media (max-width: 767px) {
   html, body { min-width: 0; }
   .afisha-card { padding: 20px 0 28px; }
-  .afisha-card__grid { grid-template-columns: 96px minmax(0, 1fr); gap: 16px; }
+  .afisha-card__grid { grid-template-columns: 80px minmax(0, 1fr); gap: 16px; }
   .afisha-card__date { grid-column: 1 / -1; }
   .afisha-card__main, .afisha-card__meta { grid-column: 2; min-width: 0; }
   .afisha-card__date strong { font-size: 46px; }
   .afisha-card__image { width: 100%; aspect-ratio: 4 / 5; }
   .afisha-card__title { font-size: 26px; line-height: 1.08; margin: 12px 0 18px; overflow-wrap: anywhere; }
+  .afisha-card__description { margin: -4px 0 20px; font-size: 13px; line-height: 1.45; }
   .afisha-card__schedule { font-size: 11px; flex-wrap: wrap; gap: 5px; }
   .afisha-card__age { font-size: 11px; margin-left: 2px; }
   .afisha-card__actions { gap: 8px; flex-wrap: wrap; }

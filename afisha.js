@@ -22,12 +22,15 @@
     const day = text(card, '.date-number');
     const month = fullDate.replace(day, '').replace(text(card, '.day-week.desktop-inline'), '').trim();
     const cast = card.querySelector('.actors--top');
+    const description = card.querySelector('.poster-item__description .actors:not(.actors--top)')?.cloneNode(true);
+    description?.querySelectorAll('br').forEach(lineBreak => lineBreak.replaceWith('\n'));
     const director = [...(cast?.querySelectorAll('.actors__item') || [])]
       .map(item => item.textContent.replace(/\s+/g, ' ').trim())
       .find(value => /режисс|дириж/i.test(value)) || '';
 
     return {
       title,
+      description: description?.textContent.split('\n').map(line => line.replace(/\s+/g, ' ').trim()).filter(Boolean).join('\n') || '',
       day,
       weekday: dayTime[0] || '',
       time: dayTime[1] || '',
@@ -52,6 +55,7 @@
         <div class="afisha-card__main">
           <div class="afisha-card__schedule"><span class="afisha-card__venue">${escapeHtml(data.venue)}</span><span aria-hidden="true">·</span><time class="afisha-card__time">${escapeHtml(data.time)}</time></div>
           <h3 class="afisha-card__title">${escapeHtml(data.title)}${data.age ? ` <span class="afisha-card__age">${escapeHtml(data.age)}</span>` : ''}</h3>
+          ${data.description ? `<p class="afisha-card__description">${escapeHtml(data.description)}</p>` : ''}
           <div class="afisha-card__actions"><a href="#" class="afisha-buy">Купить билет</a>${data.pushkin ? `<img class="afisha-pushkin" src="${escapeHtml(data.pushkin)}" alt="Пушкинская карта">` : ''}</div>
         </div>
         <aside class="afisha-card__meta">${data.director ? `<p class="afisha-card__director">${escapeHtml(data.director)}</p>` : ''}${data.castHtml ? `<button class="afisha-cast-trigger" type="button">Состав</button>` : ''}</aside>
