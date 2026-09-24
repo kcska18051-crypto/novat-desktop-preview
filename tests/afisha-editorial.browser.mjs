@@ -1,0 +1,49 @@
+import http from 'node:http';
+import fs from 'node:fs';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+import assert from 'node:assert/strict';
+
+const require = createRequire(import.meta.url);
+const modulePath = process.env.NOVAT_PLAYWRIGHT_MODULE;
+if (!modulePath) throw new Error('NOVAT_PLAYWRIGHT_MODULE is required');
+const { chromium } = require(modulePath);
+const root = path.resolve(import.meta.dirname, '..');
+const types = { '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg', '.JPG': 'image/jpeg', '.png': 'image/png' };
+const server = http.createServer((request, response) => {
+  const pathname = new URL(request.url, 'http://127.0.0.1').pathname;
+  const file = path.join(root, pathname === '/' ? 'index.html' : pathname);
+  if (!file.startsWith(root)) { response.writeHead(403).end(); return; }
+  fs.readFile(file, (error, data) => {
+    if (error) { response.writeHead(404).end(); return; }
+    response.setHeader('Content-Type', types[path.extname(file)] || 'text/html');
+    response.end(data);
+  });
+});
+await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
+const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+
+try {
+  await page.goto(`http://127.0.0.1:${server.address().port}/`, { waitUntil: 'networkidle' });
+  const sourceCount = await page.locator('#list .data-item').count();
+  const cardCount = await page.locator('#list .afisha-card').count();
+  assert.ok(sourceCount > 0, 'source performances must exist');
+  assert.equal(cardCount, sourceCount, 'every source performance becomes an editorial card');
+  const first = page.locator('.afisha-card').first();
+  for (const selector of ['.afisha-card__date', '.afisha-card__image img', '.afisha-card__venue', '.afisha-card__time', '.afisha-card__title', '.afisha-card__age', '.afisha-buy']) {
+    assert.equal(await first.locator(selector).count(), 1, `first card exposes ${selector}`);
+  }
+  assert.ok((await first.locator('.afisha-card__image img').getAttribute('alt')).trim().length > 0);
+  assert.match(await first.locator('.afisha-card__image img').getAttribute('src'), /^assets\//);
+  const dateKeys = await page.locator('.afisha-card').evaluateAll(cards => cards.map(card => card.dataset.dateKey));
+  assert.equal(await page.locator('.afisha-day-heading').count(), new Set(dateKeys).size, 'duplicate dates share one day heading');
+  const noCast = page.locator('.afisha-card[data-has-cast="false"]').first();
+  if (await noCast.count()) assert.equal(await noCast.locator('.afisha-cast-trigger').count(), 0);
+  const noDirector = page.locator('.afisha-card[data-has-director="false"]').first();
+  if (await noDirector.count()) assert.equal(await noDirector.locator('.afisha-card__director').count(), 0);
+  console.log('Afisha editorial browser checks passed.');
+} finally {
+  await browser.close();
+  await new Promise(resolve => server.close(resolve));
+}
