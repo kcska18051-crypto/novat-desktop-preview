@@ -168,14 +168,6 @@
       });
       archive.append(toggle);
     }
-    const content = document.querySelector('.main-content');
-    const sizeMonthStrip = () => {
-      const bounds = content.getBoundingClientRect();
-      archive.style.setProperty('--month-strip-left', `${bounds.left - archive.getBoundingClientRect().left}px`);
-      archive.style.setProperty('--month-strip-width', `${bounds.width}px`);
-    };
-    new ResizeObserver(sizeMonthStrip).observe(content);
-    sizeMonthStrip();
     const root = document.querySelector('#list .c-list-wrap');
     if (!root || root.dataset.editorialReady) return;
     root.dataset.editorialReady = 'true';
@@ -187,6 +179,14 @@
       card.dataset.dateKey = key;
     });
     const heading = root.querySelector(':scope > .month');
+    const content = document.querySelector('.main-content');
+    const sizeMonthStrip = () => {
+      const bounds = content.getBoundingClientRect();
+      heading.style.setProperty('--month-strip-left', `${bounds.left - heading.getBoundingClientRect().left}px`);
+      heading.style.setProperty('--month-strip-width', `${bounds.width}px`);
+    };
+    new ResizeObserver(sizeMonthStrip).observe(content);
+    sizeMonthStrip();
     const cards = [...root.querySelectorAll(':scope > .afisha-card')];
     heading.setAttribute('role', 'heading');
     heading.setAttribute('aria-level', '2');

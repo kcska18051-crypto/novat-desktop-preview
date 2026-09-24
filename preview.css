@@ -229,7 +229,8 @@ body.afisha-drawer-open { overflow: visible; }
 }
 .archive-wrapper { position: relative; isolation: isolate; overflow: visible; padding-bottom: 16px; border: 0; }
 .filter-block.filter-block--under-baner { border-top: 0; }
-.archive-wrapper::after { content: ""; position: absolute; z-index: -1; top: -8px; bottom: 0; left: var(--month-strip-left, 0px); width: var(--month-strip-width, 100%); background: rgb(226 178 103 / 25%); pointer-events: none; }
+#list .c-list-wrap > .month { display: block; }
+.c-list-wrap > .month::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: var(--month-strip-left, 0px); width: var(--month-strip-width, 100%); background: linear-gradient(rgb(226 178 103 / 25%), rgb(226 178 103 / 25%)), var(--page-background); pointer-events: none; }
 .novat-mobile-menu { border: 0; background: var(--brand-burgundy); color: var(--brand-yellow); }
 @media (max-width: 767px) {
   .aside-part { display: none !important; }
