@@ -64,6 +64,22 @@ try {
   assert.ok(await page.locator('.afisha-pushkin').count() > 0, 'Pushkin marker is visible for eligible cards');
   await first.locator('.afisha-card__image img').evaluate(image => { image.src = '/assets/missing-poster.jpg'; });
   await page.waitForFunction(() => document.querySelector('.afisha-card__image')?.classList.contains('is-fallback'));
+
+  const trigger = page.locator('.afisha-cast-trigger').first();
+  await trigger.focus();
+  await trigger.click();
+  const drawer = page.locator('.afisha-drawer');
+  assert.equal(await drawer.getAttribute('aria-hidden'), 'false');
+  assert.equal(await page.locator('body').evaluate(body => body.classList.contains('afisha-drawer-open')), true);
+  assert.equal(await drawer.locator('.afisha-drawer__title').innerText(), await trigger.evaluate(button => button._cast.title));
+  await page.keyboard.press('Escape');
+  assert.equal(await drawer.getAttribute('aria-hidden'), 'true');
+  assert.equal(await trigger.evaluate(button => button === document.activeElement), true);
+  await trigger.click();
+  await page.locator('.afisha-drawer__close').focus();
+  await page.keyboard.press('Shift+Tab');
+  assert.equal(await drawer.evaluate(element => element.contains(document.activeElement)), true);
+  await page.locator('.afisha-drawer__close').click();
   console.log('Afisha editorial browser checks passed.');
 } finally {
   await browser.close();
