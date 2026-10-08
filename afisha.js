@@ -58,7 +58,7 @@
           <h3 class="afisha-card__title">${escapeHtml(data.title)}</h3>
           ${data.description ? `<p class="afisha-card__description">${escapeHtml(data.description)}</p>` : ''}
         </div>
-        <aside class="afisha-card__meta"><div>${data.director ? `<p class="afisha-card__director">${escapeHtml(data.director)}</p>` : ''}${data.castHtml ? `<button class="afisha-cast-trigger" type="button">Исполнители</button>` : ''}</div>
+        <aside class="afisha-card__meta"><div>${data.director ? `<p class="afisha-card__director">${escapeHtml(data.director)}</p>` : ''}${data.castHtml ? `<button class="afisha-cast-trigger" type="button">Состав исполнителей</button>` : ''}</div>
           <div class="afisha-card__actions"><a href="#" class="afisha-buy">Купить билет</a>${data.pushkin ? `<img class="afisha-pushkin" src="${escapeHtml(data.pushkin)}" alt="Пушкинская карта">` : ''}</div>
         </aside>
       </div>`;
