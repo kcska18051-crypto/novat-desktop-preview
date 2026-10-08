@@ -249,9 +249,9 @@ body.afisha-drawer-open { overflow: visible; }
   font-weight: 400;
 }
 .aside-part .logo { text-align: center; }
-.aside-part .logo img { width: 70%; max-width: 116.9px; display: block; margin: 0 auto; }
+.aside-part .logo img { width: 100%; max-width: 167px; display: block; margin: 0 auto; }
 .aside-part .slogan { text-align: center; }
-.culture-logo { width: 100%; }
+.culture-logo { display: flex; width: 70%; margin: 25px auto; }
 .culture-logo img { display: block; width: 100%; height: auto; }
 .top-menu__link, .navbar-top__link, .archive-wrapper .choose-type, .c-list-wrap > .month {
   font-family: "Novat Engravers Gothic", sans-serif;

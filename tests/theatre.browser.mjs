@@ -35,9 +35,14 @@ try {
   assert.equal(await page.locator('.top-menu__link').first().evaluate(el => getComputedStyle(el).fontWeight), '700');
   const centered = await page.locator('.aside-part .logo img').evaluate(el => {
     const image = el.getBoundingClientRect(), sidebar = el.closest('.aside-part').getBoundingClientRect();
-    return Math.abs(image.x + image.width / 2 - sidebar.x - sidebar.width / 2) < 2 && image.width <= 117;
+    return Math.abs(image.x + image.width / 2 - sidebar.x - sidebar.width / 2) < 2 && Math.abs(image.width - 167) < 1;
   });
-  assert.ok(centered, 'sidebar logo is reduced and centered');
+  assert.ok(centered, 'sidebar logo is restored to its original size and centered');
+  assert.ok(await page.locator('.culture-logo img').evaluate(el => {
+    const image = el.getBoundingClientRect(), sidebar = el.closest('.aside-part'), rect = sidebar.getBoundingClientRect(), css = getComputedStyle(sidebar);
+    const contentWidth = rect.width - parseFloat(css.paddingLeft) - parseFloat(css.paddingRight);
+    return Math.abs(image.x + image.width / 2 - rect.x - rect.width / 2) < 2 && Math.abs(image.width / contentWidth - 0.7) < 0.01;
+  }), 'Culture.RF is 30 percent smaller and centered');
   const menuGap = await page.evaluate(() => document.querySelector('.top-menu__link').getBoundingClientRect().top - document.querySelector('.top-banner').getBoundingClientRect().bottom);
   assert.ok(menuGap >= 24, `section navigation must breathe below the photo, got ${menuGap}px`);
   const nav = page.locator('.navbar-top__link').nth(1);
