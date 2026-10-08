@@ -32,6 +32,7 @@ try {
   assert.equal(cardCount, sourceCount, 'every source performance becomes an editorial card');
   const first = page.locator('.afisha-card').first();
   assert.match(await first.locator('.afisha-card__title').evaluate(el => getComputedStyle(el).fontFamily), /RB Novat Afisha/);
+  assert.match(await page.locator('.afisha-card--excursion .afisha-card__title').first().evaluate(el => getComputedStyle(el).fontFamily), /RB Novat Afisha/);
   assert.equal(await first.locator('.afisha-card__meta .afisha-card__actions').count(), 1, 'tickets and Pushkin card belong in the right column');
   const imageRatio = await first.locator('.afisha-card__image').evaluate(el => el.clientWidth / el.clientHeight);
   assert.ok(imageRatio > 2, 'poster is landscape rather than square');

@@ -264,7 +264,6 @@ body.afisha-drawer-open { overflow: visible; }
   font-variant-ligatures: common-ligatures contextual;
   font-feature-settings: "liga" 1, "rclt" 1;
 }
-.afisha-card--excursion .afisha-card__title { font-family: "Novat Engravers Gothic", sans-serif; font-size: clamp(26px, 2.2vw, 36px); }
 .afisha-card__meta { align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
 .afisha-card__actions { margin-top: auto; gap: 12px; }
 @media (min-width: 1181px) {
