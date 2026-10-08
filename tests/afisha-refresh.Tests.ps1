@@ -15,8 +15,9 @@ if ($html -notmatch 'class="sidebar-pictogram sidebar-pictogram--eye"' -or
     $failures.Add('Sidebar pictograms must be rendered as clean inline SVG icons')
 }
 
-if ($html -notmatch 'class="culture-logo__name">КУЛЬТУРА\.</span>\s*<span class="culture-logo__rf">РФ</span>') {
-    $failures.Add('Culture.RF logo must expose separately colored text on a transparent background')
+if ($html -notmatch '<img src="assets/culture-gold.png" alt="Культура.РФ">' -or
+    -not (Test-Path (Join-Path $repoRoot 'assets/culture-gold.png'))) {
+    $failures.Add('Culture.RF must use the supplied white and gold logo asset')
 }
 
 if ($html -notmatch 'afisha\.js\?v=brand-') {
@@ -39,8 +40,6 @@ $requiredPatterns = @(
     '(?s)\.c-list-wrap\s*>\s*\.month\s*\{[^}]*position:\s*sticky[^}]*top:\s*0'
     '(?s)\.sidebar-pictogram\s*\{[^}]*color:\s*var\(--brand-yellow\)'
     '(?s)\.aside-part\s+\.button-special\s*\{[^}]*background-color:\s*transparent\s*!important'
-    '(?s)\.culture-logo__name\s*\{[^}]*color:\s*#fff'
-    '(?s)\.culture-logo__rf\s*\{[^}]*color:\s*#f00'
 )
 
 foreach ($pattern in $requiredPatterns) {

@@ -46,6 +46,7 @@
 
   function renderCard(card, data) {
     card.classList.add('afisha-card');
+    card.classList.toggle('afisha-card--excursion', /экскурси/i.test(data.venue + ' ' + data.title));
     card.dataset.title = data.title;
     card.dataset.dayLabel = `${monthHeading(data.month)}, ${data.weekday}`;
     card.innerHTML = `
@@ -56,9 +57,10 @@
           <div class="afisha-card__schedule"><span class="afisha-card__venue">${escapeHtml(data.venue)}</span><span aria-hidden="true">·</span><time class="afisha-card__time">${escapeHtml(data.time)}</time>${data.age ? `<span class="afisha-card__age"><span aria-hidden="true">·</span> ${escapeHtml(data.age)}</span>` : ''}</div>
           <h3 class="afisha-card__title">${escapeHtml(data.title)}</h3>
           ${data.description ? `<p class="afisha-card__description">${escapeHtml(data.description)}</p>` : ''}
-          <div class="afisha-card__actions"><a href="#" class="afisha-buy">Купить билет</a>${data.pushkin ? `<img class="afisha-pushkin" src="${escapeHtml(data.pushkin)}" alt="Пушкинская карта">` : ''}</div>
         </div>
-        <aside class="afisha-card__meta">${data.director ? `<p class="afisha-card__director">${escapeHtml(data.director)}</p>` : ''}${data.castHtml ? `<button class="afisha-cast-trigger" type="button">Состав</button>` : ''}</aside>
+        <aside class="afisha-card__meta"><div>${data.director ? `<p class="afisha-card__director">${escapeHtml(data.director)}</p>` : ''}${data.castHtml ? `<button class="afisha-cast-trigger" type="button">Состав</button>` : ''}</div>
+          <div class="afisha-card__actions"><a href="#" class="afisha-buy">Купить билет</a>${data.pushkin ? `<img class="afisha-pushkin" src="${escapeHtml(data.pushkin)}" alt="Пушкинская карта">` : ''}</div>
+        </aside>
       </div>`;
     card.dataset.hasCast = String(Boolean(data.castHtml));
     card.dataset.hasDirector = String(Boolean(data.director));

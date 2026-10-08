@@ -31,6 +31,18 @@ try {
   assert.ok(sourceCount > 0, 'source performances must exist');
   assert.equal(cardCount, sourceCount, 'every source performance becomes an editorial card');
   const first = page.locator('.afisha-card').first();
+  assert.match(await first.locator('.afisha-card__title').evaluate(el => getComputedStyle(el).fontFamily), /RB Novat Afisha/);
+  assert.equal(await first.locator('.afisha-card__meta .afisha-card__actions').count(), 1, 'tickets and Pushkin card belong in the right column');
+  const imageRatio = await first.locator('.afisha-card__image').evaluate(el => el.clientWidth / el.clientHeight);
+  assert.ok(imageRatio > 2, 'poster is landscape rather than square');
+  assert.equal(await page.locator('.culture-logo img').count(), 1);
+  for (const width of [1280, 1440, 1920]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.evaluate(() => document.fonts.ready);
+    const heights = await page.locator('.afisha-card__grid').evaluateAll(els => els.map(el => Math.round(el.getBoundingClientRect().height)));
+    assert.ok(Math.max(...heights) - Math.min(...heights) <= 1, `desktop card heights match at ${width}px: ${[...new Set(heights)]}`);
+  }
+  await page.setViewportSize({ width: 1440, height: 1000 });
   for (const selector of ['.afisha-card__date', '.afisha-card__image img', '.afisha-card__venue', '.afisha-card__time', '.afisha-card__title', '.afisha-card__age', '.afisha-buy']) {
     assert.equal(await first.locator(selector).count(), 1, `first card exposes ${selector}`);
   }

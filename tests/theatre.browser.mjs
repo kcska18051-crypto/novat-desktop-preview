@@ -30,6 +30,14 @@ try {
     assert.ok(fonts.length && fonts.every(font => font.includes('Novat Engravers Gothic')), `${selector} uses the approved heading font`);
   }
   assert.equal(await page.locator('.background-toggle').count(), 0);
+  assert.equal(await page.locator('.culture-logo img').count(), 1);
+  assert.match(await page.locator('.aside-part .slogan').evaluate(el => getComputedStyle(el).fontFamily), /Novat Engravers Gothic/);
+  assert.equal(await page.locator('.top-menu__link').first().evaluate(el => getComputedStyle(el).fontWeight), '700');
+  const centered = await page.locator('.aside-part .logo img').evaluate(el => {
+    const image = el.getBoundingClientRect(), sidebar = el.closest('.aside-part').getBoundingClientRect();
+    return Math.abs(image.x + image.width / 2 - sidebar.x - sidebar.width / 2) < 2 && image.width <= 117;
+  });
+  assert.ok(centered, 'sidebar logo is reduced and centered');
   const menuGap = await page.evaluate(() => document.querySelector('.top-menu__link').getBoundingClientRect().top - document.querySelector('.top-banner').getBoundingClientRect().bottom);
   assert.ok(menuGap >= 24, `section navigation must breathe below the photo, got ${menuGap}px`);
   const nav = page.locator('.navbar-top__link').nth(1);

@@ -19,6 +19,20 @@ html,body{min-width:1280px}html{scroll-behavior:smooth}a,button{transition:color
 .afisha-card__date strong { font-family: "Novat Abril Fatface", serif; }
 
 /* Final client palette */
+@font-face {
+  font-family: "Novat Engravers Gothic";
+  src: url("assets/EngraversGothicBold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "RB Novat Afisha";
+  src: url("assets/RB_NOVAT_AFISHA.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 :root { --page-background: #FFFFFF; }
 :root[data-background="beige"] { --page-background: #F6F0E3; }
 :root { --brand-burgundy: #55052D; --brand-yellow: #E2B267; --brand-cream: #F2E6D1; }
@@ -104,8 +118,6 @@ html, body { background-color: var(--page-background); }
   letter-spacing: -0.06em;
   text-decoration: none;
 }
-.culture-logo__name { color: #fff; }
-.culture-logo__rf { color: #f00; }
 
 /* Burgundy month navigation, dates, and venue labels */
 .archive-wrapper .month-season--prev .choose-type,
@@ -231,6 +243,43 @@ body.afisha-drawer-open { overflow: visible; }
 #list .c-list-wrap > .month { display: block; }
 .c-list-wrap > .month::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: var(--month-strip-left, 0px); width: var(--month-strip-width, 100%); background: linear-gradient(rgb(226 178 103 / 25%), rgb(226 178 103 / 25%)), var(--page-background); pointer-events: none; }
 .novat-mobile-menu { border: 0; background: var(--brand-burgundy); color: var(--brand-yellow); }
+.aside-part .navigation__link, .aside-part .slogan,
+.novat-mobile-menu .navigation__link, .novat-mobile-slogan {
+  font-family: "Novat Engravers Gothic", sans-serif;
+  font-weight: 400;
+}
+.aside-part .logo { text-align: center; }
+.aside-part .logo img { width: 70%; max-width: 116.9px; display: block; margin: 0 auto; }
+.aside-part .slogan { text-align: center; }
+.culture-logo { width: 100%; }
+.culture-logo img { display: block; width: 100%; height: auto; }
+.top-menu__link, .navbar-top__link, .archive-wrapper .choose-type, .c-list-wrap > .month {
+  font-family: "Novat Engravers Gothic", sans-serif;
+  font-weight: 700;
+}
+.afisha-card__title {
+  font-family: "RB Novat Afisha", serif;
+  font-weight: 400;
+  font-size: clamp(30px, 2.5vw, 42px);
+  font-variant-ligatures: common-ligatures contextual;
+  font-feature-settings: "liga" 1, "rclt" 1;
+}
+.afisha-card--excursion .afisha-card__title { font-family: "Novat Engravers Gothic", sans-serif; font-size: clamp(26px, 2.2vw, 36px); }
+.afisha-card__meta { align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
+.afisha-card__actions { margin-top: auto; gap: 12px; }
+@media (min-width: 1181px) {
+  .afisha-card__grid { grid-template-columns: 64px minmax(190px, 1.1fr) minmax(0, 2fr) 200px; min-height: 230px; }
+  .afisha-card__main { min-width: 0; }
+  .afisha-card__image { aspect-ratio: 2.1 / 1; }
+  .afisha-card__title { overflow-wrap: anywhere; }
+  .afisha-card__description { margin-bottom: 0; }
+  .afisha-card__actions { flex-wrap: wrap; }
+  .afisha-pushkin { width: 60px; }
+  .afisha-buy { padding: 9px 10px; font-size: 12px; }
+}
+@media (max-width: 1180px) and (min-width: 768px) {
+  .afisha-card__image { aspect-ratio: 2.1 / 1; }
+}
 @media (max-width: 767px) {
   .aside-part { display: none !important; }
   .novat-mobile-header { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; height: 84px; padding: 12px 20px; background: var(--brand-burgundy); }
