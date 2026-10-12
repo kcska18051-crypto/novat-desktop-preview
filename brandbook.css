@@ -1,0 +1,89 @@
+/* Local brandbook preview: retain the approved desktop sidebar. */
+html, body { min-width: 0; }
+.brandbook-page { color: #55052D; background: #fff; }
+.brandbook-wrap { padding: 0 5.4% 0; max-width: 1500px; margin: 0 auto; }
+.brandbook-top-nav { display: flex; justify-content: flex-end; gap: 24px; padding: 28px 0 18px; border-bottom: 1px solid #E2B267; }
+.brandbook-top-nav a { font-family: "Novat Engravers Gothic", sans-serif; font-size: 20px; font-weight: 700; color: #55052D; padding-bottom: 6px; border-bottom: 1px solid transparent; }
+.brandbook-top-nav a:hover, .brandbook-top-nav a:focus-visible, .brandbook-top-nav .is-active { border-bottom-color: #55052D; }
+.brandbook-breadcrumb { display: flex; gap: 12px; flex-wrap: wrap; font-size: 13px; margin: 32px 0 38px; color: #79556A; }
+.brandbook-breadcrumb a { color: #55052D; }
+.brandbook-heading { padding-bottom: 32px; border-bottom: 1px solid #E2B267; }
+.brandbook-eyebrow { margin: 0 0 14px; text-transform: uppercase; letter-spacing: .06em; font-size: 12px; line-height: 1.5; }
+.brandbook-page h1, .brandbook-page h2, .brandbook-page h3 { color: #55052D; font-family: "Novat Engravers Gothic", sans-serif; font-weight: 400; }
+.brandbook-page h1 { font-size: clamp(40px, 4vw, 64px); line-height: 1; margin: 0; }
+.brandbook-page h2 { font-size: 34px; line-height: 1.1; margin: 0 0 20px; }
+.brandbook-page h3 { font-size: 30px; line-height: 1.15; margin: 0 0 24px; }
+.brandbook-intro { padding: 36px 0 42px; }
+.brandbook-intro p { max-width: 80ch; margin: 0 0 18px; font-size: 17px; line-height: 1.6; }
+.brandbook-intro .brandbook-draft-note { font-size: 12px; line-height: 1.5; color: #79556A; margin: 26px 0 0; }
+.brandbook-section-heading { border-top: 1px solid #E2B267; padding: 24px 0 8px; }
+.brandbook-section-heading h2 { margin-bottom: 8px; }
+.brandbook-section-heading p { font-size: 14px; margin: 0; }
+.brandbook-logo-row { display: grid; grid-template-columns: minmax(260px, .9fr) minmax(0, 1.1fr); gap: 42px; align-items: center; padding: 30px 0; border-bottom: 1px solid #E2B267; }
+.brandbook-logo-preview { margin: 0; height: 240px; display: grid; place-items: center; border: 1px solid #E2B267; }
+.brandbook-logo-preview img { width: 60%; max-width: 220px; height: 165px; object-fit: contain; }
+.brandbook-logo-preview--light { background: #F6F0E3; }
+.brandbook-logo-preview--burgundy { background: #55052D; border-color: #55052D; }
+.brandbook-logo-preview--dark { background: #29232A; border-color: #29232A; }
+.brandbook-version { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: #79556A; margin: 0 0 10px; }
+.brandbook-file-caption { font-size: 13px; margin: 0 0 12px; }
+.brandbook-downloads { display: flex; flex-wrap: wrap; gap: 10px; }
+.brandbook-download { display: inline-flex; justify-content: space-between; align-items: center; gap: 18px; min-height: 44px; padding: 10px 14px; border: 1px solid #55052D; color: #55052D; background: transparent; font-size: 13px; line-height: 1.3; }
+.brandbook-download svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 1; fill: none; }
+.brandbook-download:hover { background: #55052D; color: #E2B267; text-decoration: none; }
+.brandbook-download:disabled { border-color: #C9B9C2; color: #917A87; cursor: default; background: none; }
+.brandbook-file-note { font-size: 12px; line-height: 1.5; color: #79556A; margin: 14px 0 0; }
+.brandbook-guide { padding: 36px; margin: 48px 0; background: #F6F0E3; border-top: 1px solid #E2B267; border-bottom: 1px solid #E2B267; }
+.brandbook-guide-copy { max-width: 72ch; }
+.brandbook-guide-copy p:not(.brandbook-eyebrow) { font-size: 16px; line-height: 1.55; margin-bottom: 28px; }
+.brandbook-guide-download { display: flex; align-items: center; text-align: left; gap: 18px; color: #55052D; border: 1px solid #55052D; background: transparent; padding: 18px 22px; font-size: 15px; line-height: 1.4; max-width: 600px; cursor: default; }
+.brandbook-guide-download svg { flex: 0 0 28px; width: 28px; height: 28px; fill: none; stroke: currentColor; stroke-width: 1; }
+.brandbook-guide-download small { display: block; font-size: 12px; color: #79556A; margin-top: 6px; }
+.brandbook-footer { display: flex; justify-content: space-between; gap: 28px; border-top: 1px solid #E2B267; padding: 24px 0 40px; font-size: 12px; line-height: 1.5; }
+.brandbook-footer p { margin: 0; max-width: 60ch; }
+.brandbook-footer a { color: #55052D; }
+.brandbook-mobile-header { display: none; }
+.brandbook-mobile-menu { background: #55052D; color: #E2B267; border: 0; }
+.brandbook-page :focus-visible { outline: 1px solid #E2B267; outline-offset: 4px; }
+@media (min-width: 768px) and (max-width: 1100px) {
+  .brandbook-top-nav { gap: 16px; }
+  .brandbook-top-nav a { font-size: 17px; }
+  .brandbook-logo-row { grid-template-columns: minmax(180px, .9fr) minmax(0, 1.1fr); gap: 24px; }
+  .brandbook-logo-preview { height: 210px; }
+}
+@media (max-width: 767px) {
+  .brandbook-page .main-content { width: 100%; margin: 0; float: none; padding: 0; }
+  .brandbook-page .container-fluid { padding: 0; }
+  .brandbook-page .row { margin: 0; }
+  .brandbook-wrap { padding: 0 22px; }
+  .brandbook-mobile-header { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; padding: 14px 20px; height: 88px; background: #55052D; }
+  .brandbook-menu-toggle { width: 44px; height: 44px; display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 10px; border: 1px solid #E2B267; background: transparent; }
+  .brandbook-menu-toggle span { display: block; width: 22px; height: 1px; background: #E2B267; }
+  .brandbook-mobile-logo { justify-self: center; width: 106px; }
+  .brandbook-mobile-logo img { width: 100%; max-height: 58px; object-fit: contain; }
+  .brandbook-mobile-tickets { width: 44px; height: 44px; display: grid; place-items: center; color: #E2B267; }
+  .brandbook-mobile-tickets svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1; }
+  .brandbook-top-nav { gap: 22px; padding: 18px 0 12px; overflow-x: auto; justify-content: flex-start; white-space: nowrap; }
+  .brandbook-top-nav a { font-size: 17px; flex: 0 0 auto; }
+  .brandbook-breadcrumb { font-size: 12px; margin: 24px 0 28px; gap: 8px; }
+  .brandbook-heading { padding-bottom: 24px; }
+  .brandbook-page h1 { font-size: 40px; }
+  .brandbook-page h2 { font-size: 29px; }
+  .brandbook-page h3 { font-size: 27px; margin-bottom: 20px; }
+  .brandbook-intro { padding: 28px 0 32px; }
+  .brandbook-intro p { font-size: 15px; line-height: 1.55; }
+  .brandbook-logo-row { grid-template-columns: minmax(0, 1fr); gap: 22px; padding: 26px 0; }
+  .brandbook-logo-preview { height: 220px; }
+  .brandbook-logo-preview img { height: 155px; }
+  .brandbook-guide { margin: 34px 0; padding: 26px 20px; }
+  .brandbook-guide-copy p:not(.brandbook-eyebrow) { font-size: 15px; }
+  .brandbook-guide-download { padding: 16px 14px; font-size: 14px; gap: 12px; }
+  .brandbook-footer { flex-direction: column; gap: 12px; padding-bottom: 28px; }
+  .brandbook-mobile-menu { width: 100%; max-width: none; height: 100dvh; max-height: none; margin: 0; padding: 24px; }
+  .brandbook-mobile-menu::backdrop { background: #55052D; }
+  .brandbook-menu-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+  .brandbook-menu-head img { width: 115px; }
+  .brandbook-menu-close { width: 44px; height: 44px; font-size: 30px; color: #E2B267; border: 1px solid #E2B267; background: transparent; }
+  .brandbook-mobile-menu nav a { display: block; padding: 18px 0; border-top: 1px solid #E2B267; color: #E2B267; font: 22px "Novat Engravers Gothic", sans-serif; }
+  .brandbook-mobile-menu > p { margin-top: 30px; font: 16px "Novat Engravers Gothic", sans-serif; }
+}
