@@ -267,15 +267,22 @@ body.afisha-drawer-open { overflow: visible; }
 .afisha-card__meta { align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
 .afisha-card__actions { margin-top: auto; gap: 12px; }
 @media (min-width: 1181px) {
-  .afisha-card__grid { grid-template-columns: 64px minmax(190px, 1.1fr) minmax(0, 2fr) 200px; min-height: 230px; }
+  .afisha-card { padding: 16px 0; }
+  .afisha-card__grid { grid-template-columns: 64px minmax(190px, 1.1fr) minmax(0, 2fr) 200px; min-height: 196px; }
+  .afisha-card__meta { position: relative; }
+  .afisha-card__director { margin: 0 0 10px; }
   .afisha-card__main { min-width: 0; }
-  .afisha-card__image { aspect-ratio: 2.1 / 1; }
+  .afisha-card__image { aspect-ratio: 2.1 / 1; max-height: 170px; }
   .afisha-card__title { overflow-wrap: anywhere; }
   .afisha-card__description { margin-bottom: 0; }
-  .afisha-card__actions { flex-wrap: wrap; }
+  .afisha-card__actions { position: absolute; top: 50%; left: 0; width: 100%; transform: translateY(-50%); margin-top: 0; flex-wrap: wrap; }
   .afisha-pushkin { width: 60px; }
   .afisha-buy { padding: 9px 10px; font-size: 12px; }
 }
+.archive-wrapper .month-season--prev .choose-type { font-size: 19px; }
+.theatre-preview .top-menu__link { font-size: 18px; }
+.theatre-preview .top-menu .nav-tabs { display: flex; flex-wrap: wrap; gap: 10px 20px; }
+.theatre-preview .top-menu .top-menu__link { margin-right: 0; }
 @media (max-width: 1180px) and (min-width: 768px) {
   .afisha-card__image { aspect-ratio: 2.1 / 1; }
 }
