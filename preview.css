@@ -266,6 +266,14 @@ body.afisha-drawer-open { overflow: visible; }
 }
 .afisha-card__meta { align-self: stretch; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
 .afisha-card__simple-letter { font-feature-settings: "aalt" 1, "liga" 0, "rclt" 0; }
+@font-face {
+  font-family: "RB Novat Simple T";
+  src: url("assets/RB_NOVAT_AFISHA_SimpleT.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.afisha-card__simple-t { font-family: "RB Novat Simple T", serif; font-feature-settings: "aalt" 0, "liga" 0, "rclt" 0; }
 .afisha-card__actions { margin-top: auto; gap: 12px; }
 @media (min-width: 1181px) {
   .afisha-card { padding: 16px 0; }

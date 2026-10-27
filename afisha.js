@@ -55,7 +55,7 @@
         <figure class="afisha-card__image"><img src="${escapeHtml(data.image)}" alt="${escapeHtml(data.title)}"></figure>
         <div class="afisha-card__main">
           <div class="afisha-card__schedule"><span class="afisha-card__venue">${escapeHtml(data.venue)}</span><span aria-hidden="true">·</span><time class="afisha-card__time">${escapeHtml(data.time)}</time>${data.age ? `<span class="afisha-card__age"><span aria-hidden="true">·</span> ${escapeHtml(data.age)}</span>` : ''}</div>
-          <h3 class="afisha-card__title">${escapeHtml(data.title).replace(/[ЕЖКУХЧЫежкухчы]/gu, letter => `<span class="afisha-card__simple-letter">${letter}</span>`)}</h3>
+          <h3 class="afisha-card__title">${escapeHtml(data.title).replace(/[Тт]+|[ЕЖКУХЧЫЯежкухчыя]/gu, letters => letters.length > 1 ? letters : `<span class="${/[Тт]/u.test(letters) ? 'afisha-card__simple-t' : 'afisha-card__simple-letter'}">${letters}</span>`)}</h3>
           ${data.description ? `<p class="afisha-card__description">${escapeHtml(data.description)}</p>` : ''}
         </div>
         <aside class="afisha-card__meta"><div>${data.director ? `<p class="afisha-card__director">${escapeHtml(data.director)}</p>` : ''}${data.castHtml ? `<button class="afisha-cast-trigger" type="button">Состав исполнителей</button>` : ''}</div>
