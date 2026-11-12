@@ -107,7 +107,7 @@
 
   function createMobileHeader() {
     if (document.querySelector('.novat-mobile-header')) return;
-    const logo = document.querySelector('.aside-part .logo img').getAttribute('src');
+    const logo = 'assets/brandbook/novat-logo-1-rgb.png';
     const navigation = document.querySelector('.aside-part .navigation').innerHTML;
     document.body.insertAdjacentHTML('afterbegin', `<header class="novat-mobile-header">
       <button class="novat-mobile-toggle" type="button" aria-label="Открыть меню" aria-controls="novat-mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>

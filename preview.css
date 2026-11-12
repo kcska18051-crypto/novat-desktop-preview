@@ -321,7 +321,8 @@ body.afisha-drawer-open { overflow: visible; }
   .novat-afisha .main-content { width: 100%; margin: 0; padding: 0; }
   .novat-afisha .main-content > .wrap { width: 100%; margin: 0; padding: 0 20px !important; }
   .novat-afisha .novat-mobile-header { padding: 12px 20px; height: 86px; }
-  .novat-afisha .novat-mobile-logo { width: 112px; }
+  .novat-afisha .novat-mobile-logo { position: relative; display: block; width: 128px; height: 62px; overflow: hidden; }
+  .novat-afisha .novat-mobile-logo img { position: absolute; top: 50%; left: 50%; width: 120px; height: auto; max-height: none; transform: translate(-50%, -50%); }
   .novat-afisha .novat-mobile-title { margin: 24px 0 20px; font-size: 34px; line-height: 1; }
   .novat-afisha .archive-wrapper { padding: 0 0 12px; }
   .novat-afisha .archive-wrapper .month-season.mobile { display: flex; align-items: center; gap: 24px; overflow-x: auto; margin: 0; padding: 0; white-space: nowrap; }
