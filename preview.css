@@ -19,6 +19,7 @@ html,body{min-width:1280px}html{scroll-behavior:smooth}a,button{transition:color
 .afisha-card__date strong { font-family: "Novat Abril Fatface", serif; }
 
 /* Final client palette */
+.novat-afisha, .novat-afisha body { min-width: 0; }
 @font-face {
   font-family: "Novat Engravers Gothic";
   src: url("assets/EngraversGothicBold.ttf") format("truetype");
@@ -312,4 +313,45 @@ body.afisha-drawer-open { overflow: visible; }
   .novat-mobile-menu .navigation__link { display: block; padding: 18px 0; margin: 0; color: var(--brand-yellow); font-size: 18px; border-top: 1px solid var(--brand-yellow); }
   .novat-mobile-menu a:hover, .novat-mobile-menu a:focus-visible { color: var(--brand-cream); }
   .novat-mobile-slogan { margin-top: 30px; font-size: 12px; letter-spacing: .07em; }
+}
+
+/* Afisha on actual mobile viewports, not a scaled desktop canvas. */
+@media (max-width: 767px) {
+  .novat-afisha { scrollbar-gutter: auto; }
+  .novat-afisha .main-content { width: 100%; margin: 0; padding: 0; }
+  .novat-afisha .main-content > .wrap { width: 100%; margin: 0; padding: 0 20px !important; }
+  .novat-afisha .novat-mobile-header { padding: 12px 20px; height: 86px; }
+  .novat-afisha .novat-mobile-logo { width: 112px; }
+  .novat-afisha .novat-mobile-title { margin: 24px 0 20px; font-size: 34px; line-height: 1; }
+  .novat-afisha .archive-wrapper { padding: 0 0 12px; }
+  .novat-afisha .archive-wrapper .month-season.mobile { display: flex; align-items: center; gap: 24px; overflow-x: auto; margin: 0; padding: 0; white-space: nowrap; }
+  .novat-afisha .archive-wrapper .choose-month { flex: 0 0 auto; display: inline-flex; align-items: center; min-height: 44px; padding: 8px 0; margin: 0; border-bottom: 1px solid transparent; background: transparent; color: var(--brand-burgundy); font: 700 20px/1.2 "Novat Engravers Gothic", sans-serif; }
+  .novat-afisha .archive-wrapper .choose-month.active { border-bottom-color: var(--brand-yellow); }
+  .novat-afisha .background-toggle { min-height: 40px; margin: 12px 0 0; }
+  .novat-afisha .filter-block { margin: 0; padding: 0 0 12px; }
+  .novat-afisha .filter-block .filter-block__top { display: flex; align-items: center; justify-content: space-between; min-height: 48px; padding: 12px 0; margin: 0; }
+  .novat-afisha #list { padding-top: 0; }
+  .novat-afisha .filter-text { font-size: 12px; letter-spacing: .12em; }
+  .novat-afisha .filter-block__drop .col-xs-8 { width: 100%; }
+  .novat-afisha .filter-block .form-item { float: none; margin: 0 0 8px; }
+  .novat-afisha .filter-block .check__label { min-height: 36px; padding-top: 8px; padding-bottom: 8px; }
+  .novat-afisha .c-list-wrap > .month { padding: 12px 0; font-size: 18px; line-height: 1.2; }
+  .novat-afisha .afisha-card { padding: 20px 0 24px; }
+  .novat-afisha .afisha-card__grid { grid-template-columns: minmax(0, 1fr); min-height: 0; gap: 12px; }
+  .novat-afisha .afisha-card__date strong { font-size: 34px; }
+  .novat-afisha .afisha-card__image { width: 100%; aspect-ratio: 2.1 / 1; max-height: 200px; }
+  .novat-afisha .afisha-card__title { font-size: 32px; line-height: 1.12; margin: 12px 0 14px; overflow-wrap: break-word; }
+  .novat-afisha .afisha-card__schedule { font-size: 12px; gap: 6px; line-height: 1.5; }
+  .novat-afisha .afisha-card__description { font-size: 14px; line-height: 1.5; margin: 0; }
+  .novat-afisha .afisha-card__meta { position: static; font-size: 13px; gap: 14px; margin-top: 2px; }
+  .novat-afisha .afisha-card__director { margin: 0 0 2px; }
+  .novat-afisha .afisha-cast-trigger { min-height: 44px; text-align: left; font-size: 12px; border: 0; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+  .novat-afisha .afisha-card__actions { position: static; transform: none; width: 100%; gap: 16px; margin: 0; }
+  .novat-afisha .afisha-buy { min-height: 44px; padding: 12px 16px; font-size: 12px; }
+  .novat-afisha .afisha-pushkin { width: 64px; }
+  .novat-afisha .afisha-drawer { width: 100%; max-width: 100%; }
+  .novat-afisha .afisha-drawer__header { padding: 18px 20px; gap: 14px; }
+  .novat-afisha .afisha-drawer__title { font-size: 22px; overflow-wrap: anywhere; }
+  .novat-afisha .afisha-drawer__close { flex: 0 0 44px; height: 44px; }
+  .novat-afisha .afisha-drawer__content { padding: 20px; }
 }

@@ -135,6 +135,7 @@ try {
   assert.equal(await page.locator('#novat-mobile-menu').evaluate(el => el.open), true);
   assert.equal(await page.locator('#novat-mobile-menu').getByRole('link', {name: 'Афиша', exact: true}).isVisible(), true);
   await page.keyboard.press('Escape');
+  await page.waitForFunction(()=>document.querySelector('.novat-mobile-toggle').getAttribute('aria-expanded')==='false');
   assert.equal(await toggle.getAttribute('aria-expanded'), 'false');
   assert.equal(await toggle.evaluate(el => el === document.activeElement), true);
   await toggle.click();

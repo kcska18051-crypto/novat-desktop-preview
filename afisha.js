@@ -140,6 +140,8 @@
     const filter = document.querySelector('#collapseExample');
     const updateFilter = () => {
       const expanded = filter.classList.contains('in');
+      filterToggle.classList.toggle('filter-active', expanded);
+      filter.setAttribute('aria-expanded', String(expanded));
       filterToggle.setAttribute('aria-expanded', String(expanded));
       filterToggle.querySelector('.c-filter-text').style.display = expanded ? 'none' : '';
       filterToggle.querySelector('.c-filter-text-hide').style.display = expanded ? '' : 'none';
