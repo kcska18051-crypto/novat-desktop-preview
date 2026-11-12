@@ -28,6 +28,7 @@ try {
     assert.ok(Math.abs(layout.scale-1)<0.01,`${name}: content is readable without page shrinking`);
     assert.ok(layout.overflow<=0,`${name}: no horizontal page scroll`);
     assert.ok(await page.locator('.novat-mobile-header').isVisible());
+    assert.ok(await page.locator('.novat-mobile-header').evaluate(el=>el.getBoundingClientRect().height<=64));
     assert.equal(await page.locator('.aside-part').isVisible(),false);
     const months=page.locator('.archive-wrapper .month-season.mobile');
     assert.ok(await months.isVisible());
@@ -43,6 +44,10 @@ try {
     await page.getByRole('button',{name:'Закрыть меню',exact:true}).click();
     await page.waitForFunction(()=>document.querySelector('.novat-mobile-toggle').getAttribute('aria-expanded')==='false');
     assert.equal(await menu.getAttribute('aria-expanded'),'false');
+    await page.locator('.afisha-card').first().scrollIntoViewIfNeeded();
+    await page.locator('.afisha-card').nth(1).evaluate(el=>window.scrollTo({top:scrollY+el.getBoundingClientRect().top-120,behavior:'instant'}));
+    assert.equal(await page.locator('.novat-mobile-header').evaluate(el=>Math.round(el.getBoundingClientRect().top)),0,'mobile header remains at screen top');
+    assert.equal(await page.locator('.c-list-wrap > .month').evaluate(el=>Math.round(el.getBoundingClientRect().top)),64,'month remains below header');
     await page.locator('.afisha-card').first().scrollIntoViewIfNeeded();
     const first=page.locator('.afisha-card').first();
     const button=first.locator('.afisha-buy');

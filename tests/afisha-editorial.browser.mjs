@@ -55,7 +55,8 @@ try {
     for (const [index, label] of [[1, 'СЕНТЯБРЬ, СР'], [3, 'СЕНТЯБРЬ, ПТ'], [0, 'СЕНТЯБРЬ, СБ']]) {
       await page.locator('.afisha-card').nth(index).evaluate(card => window.scrollTo({ top: window.scrollY + card.getBoundingClientRect().top - 25, behavior: 'instant' }));
       await page.waitForFunction(expected => document.querySelector('.c-list-wrap > .month').textContent.toUpperCase() === expected, label);
-      assert.equal(Math.round(await heading.evaluate(el => el.getBoundingClientRect().top)), 0, 'combined heading stays at the top');
+      const stickyTop = await page.evaluate(() => matchMedia('(max-width: 767px)').matches ? document.querySelector('.novat-mobile-header').getBoundingClientRect().height : 0);
+      assert.equal(Math.round(await heading.evaluate(el => el.getBoundingClientRect().top)), stickyTop, 'combined heading stays below the mobile header or at the desktop top');
     }
     const button = page.locator('.afisha-cast-trigger').nth(1);
     await button.evaluate(el => window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 180, behavior: 'instant' }));

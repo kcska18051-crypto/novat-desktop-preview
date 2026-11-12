@@ -320,9 +320,10 @@ body.afisha-drawer-open { overflow: visible; }
   .novat-afisha { scrollbar-gutter: auto; }
   .novat-afisha .main-content { width: 100%; margin: 0; padding: 0; }
   .novat-afisha .main-content > .wrap { width: 100%; margin: 0; padding: 0 20px !important; }
-  .novat-afisha .novat-mobile-header { padding: 12px 20px; height: 86px; }
-  .novat-afisha .novat-mobile-logo { position: relative; display: block; width: 128px; height: 62px; overflow: hidden; }
-  .novat-afisha .novat-mobile-logo img { position: absolute; top: 50%; left: 50%; width: 120px; height: auto; max-height: none; transform: translate(-50%, -50%); }
+  .novat-afisha body { padding-top: 64px; }
+  .novat-afisha .novat-mobile-header { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 8px 20px; height: 64px; }
+  .novat-afisha .novat-mobile-logo { position: relative; display: block; width: 112px; height: 48px; overflow: hidden; }
+  .novat-afisha .novat-mobile-logo img { position: absolute; top: 50%; left: 50%; width: 92px; height: auto; max-height: none; transform: translate(-50%, -50%); }
   .novat-afisha .novat-mobile-title { margin: 24px 0 20px; font-size: 34px; line-height: 1; }
   .novat-afisha .archive-wrapper { padding: 0 0 12px; }
   .novat-afisha .archive-wrapper .month-season.mobile { display: flex; align-items: center; gap: 24px; overflow-x: auto; margin: 0; padding: 0; white-space: nowrap; }
@@ -336,7 +337,7 @@ body.afisha-drawer-open { overflow: visible; }
   .novat-afisha .filter-block__drop .col-xs-8 { width: 100%; }
   .novat-afisha .filter-block .form-item { float: none; margin: 0 0 8px; }
   .novat-afisha .filter-block .check__label { min-height: 36px; padding-top: 8px; padding-bottom: 8px; }
-  .novat-afisha .c-list-wrap > .month { padding: 12px 0; font-size: 18px; line-height: 1.2; }
+  .novat-afisha .c-list-wrap > .month { top: 64px; padding: 12px 0; font-size: 18px; line-height: 1.2; }
   .novat-afisha .afisha-card { padding: 20px 0 24px; }
   .novat-afisha .afisha-card__grid { grid-template-columns: minmax(0, 1fr); min-height: 0; gap: 12px; }
   .novat-afisha .afisha-card__date strong { font-size: 34px; }
