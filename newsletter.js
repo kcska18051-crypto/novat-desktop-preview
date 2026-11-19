@@ -23,7 +23,7 @@
         <label class="newsletter-dialog__label" for="newsletter-email">Ваш e-mail</label>
         <input class="newsletter-dialog__email" id="newsletter-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="name@example.ru" required>
         <label class="newsletter-dialog__consent"><input type="checkbox" name="consent" required><span>Согласен на <a href="https://novat.ru/theatre/theatre/#doc" target="_blank" rel="noopener">обработку персональных данных</a> и получение рассылок</span></label>
-        <button class="newsletter-dialog__submit" type="submit">Подписаться</button>
+        <button class="newsletter-dialog__submit" type="submit"><span>Подписаться</span></button>
         <p class="newsletter-dialog__note">Отписаться можно в любом письме.</p>
         <p class="newsletter-dialog__status" role="status" hidden></p>
       </form>

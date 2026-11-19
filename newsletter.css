@@ -1,4 +1,6 @@
-.newsletter-trigger { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 56px; padding: 8px 12px; border: 1px solid var(--brand-yellow, #E2B267); background: transparent; color: var(--brand-yellow, #E2B267); text-align: left; font: 400 18px/1.05 "Novat Engravers Gothic", sans-serif; cursor: pointer; }
+.newsletter-trigger { display: grid; grid-template-columns: 18px minmax(0, 1fr) 18px; align-items: center; gap: 8px; width: 100%; min-height: 56px; padding: 8px 12px; border: 1px solid var(--brand-yellow, #E2B267); background: transparent; color: var(--brand-yellow, #E2B267); text-align: center; font: 400 18px/1.05 "Novat Engravers Gothic", sans-serif; cursor: pointer; }
+.newsletter-trigger > span { grid-column: 2; min-width: 0; text-wrap: balance; transform: translateY(-3px); }
+.newsletter-trigger > svg { grid-column: 3; grid-row: 1; }
 .newsletter-trigger svg { flex: 0 0 18px; width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1; }
 .newsletter-trigger:hover { color: #F2E6D1; border-color: #F2E6D1; }
 .aside-part .subscribe { margin-top: 24px; }
@@ -19,6 +21,8 @@
 .newsletter-dialog__consent a { color: #55052D; text-decoration: underline; text-underline-offset: 2px; }
 .newsletter-dialog__submit { min-height: 44px; min-width: 170px; padding: 12px 20px; border: 1px solid #55052D; border-radius: 0; background: #55052D; color: #E2B267; font: 400 20px/1.1 "Novat Engravers Gothic", sans-serif; cursor: pointer; }
 .newsletter-dialog__submit:hover { background: #E2B267; color: #55052D; }
+.newsletter-dialog__submit { display: inline-flex; align-items: center; justify-content: center; text-align: center; }
+.newsletter-dialog__submit > span { display: block; transform: translateY(-3px); }
 .newsletter-dialog__note { margin: 22px 0 0; font: 400 12px/1.5 Lato, Arial, sans-serif; }
 .newsletter-dialog__status { margin: 18px 0 0; font: 400 14px/1.5 Lato, Arial, sans-serif; }
 .newsletter-dialog :focus-visible, .newsletter-trigger:focus-visible { outline: 1px solid #E2B267; outline-offset: 4px; }
