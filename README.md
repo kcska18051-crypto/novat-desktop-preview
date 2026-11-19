@@ -1,7 +1,13 @@
-# NOVAT desktop preview
+# НОВАТ — клиентское превью
 
-Desktop-only standalone snapshot of https://novat.ru/afisha/performances/ for brand colour review.
+Статические страницы для согласования дизайна. Публикация из ветки `desktop-preview` через GitHub Pages.
 
-Original structure and content, local assets, 1440px viewport and 1280px minimum canvas. Off-page navigation, ticketing, submissions and analytics disabled. Original server scripts do not run. The single client-approved variant uses a white background, burgundy `#53052C`, and yellow `#E2B267`. Mobile adaptation excluded.
+- [Весь рабочий контекст, история решений и текущее состояние](docs/project-context.md)
+- [Ранняя сохранённая переписка](docs/chat-transcript.md)
+- [Афиша — десктоп и мобильная версия](https://kcska18051-crypto.github.io/novat-desktop-preview/)
+- [Театр — десктоп](https://kcska18051-crypto.github.io/novat-desktop-preview/theatre.html)
+- [Брендбук — десктоп и мобильная версия](https://kcska18051-crypto.github.io/novat-desktop-preview/brandbook.html)
 
-Published from desktop-preview branch using GitHub Pages.
+Текущая палитра интерфейса: бордовый `#55052D`, золотой `#E2B267`, белый фон с переключением на `#F6F0E3` в афише.
+
+Это демонстрационный сайт: покупка билетов, серверная фильтрация, личный кабинет и реальная отправка подписки не подключены. Скачивания официальных логотипов и руководства на странице брендбука работают.
