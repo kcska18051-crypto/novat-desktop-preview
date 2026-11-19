@@ -18,7 +18,7 @@
   document.body.insertAdjacentHTML('beforeend', `<dialog id="newsletter-dialog" class="newsletter-dialog" aria-labelledby="newsletter-title">
     <div class="newsletter-dialog__inner">
       <header class="newsletter-dialog__header"><h2 id="newsletter-title" class="newsletter-dialog__title">Подписаться на рассылки</h2><button class="newsletter-dialog__close" type="button" aria-label="Закрыть подписку"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 4 16 16M20 4 4 20"/></svg></button></header>
-      <p class="newsletter-dialog__description">Премьеры, события и начало продаж билетов — в вашей почте.</p>
+      <p class="newsletter-dialog__description">Премьеры, события и начало продаж билетов —<br>в вашей почте.</p>
       <form class="newsletter-dialog__form">
         <label class="newsletter-dialog__label" for="newsletter-email">Ваш e-mail</label>
         <input class="newsletter-dialog__email" id="newsletter-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="name@example.ru" required>
