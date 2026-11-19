@@ -1,6 +1,6 @@
 (() => {
   const init = () => {
-  const triggerMarkup = '<button class="newsletter-trigger" type="button" aria-haspopup="dialog" aria-controls="newsletter-dialog"><span>Подписаться на рассылки</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 10h15m-6-6 6 6-6 6"/></svg></button>';
+  const triggerMarkup = '<button class="newsletter-trigger" type="button" aria-haspopup="dialog" aria-controls="newsletter-dialog"><span>Подписаться на рассылки</span></button>';
   const subscription = document.querySelector('.aside-part .subscribe');
   if (subscription) subscription.innerHTML = triggerMarkup;
   for (const menu of document.querySelectorAll('#novat-mobile-menu, #brandbook-menu')) {
